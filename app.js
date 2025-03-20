@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+const MONGODB_URI = process.env.MONGODB_URI;
 const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
@@ -12,6 +14,20 @@ dotenv.config();
 
 // Ensure data directories exist
 ensureDataDirectories();
+
+// Database connection
+if (process.env.NODE_ENV === "production") {
+  mongoose
+    .connect(MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then(() => console.log("MongoDB Connected"))
+    .catch((err) => {
+      console.error("MongoDB Connection Error:", err.message);
+      // Provide fallback or graceful error handling
+    });
+}
 
 // Initialize express app
 const app = express();
