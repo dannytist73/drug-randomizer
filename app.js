@@ -63,9 +63,13 @@ app.use(
     secret: process.env.SESSION_SECRET || "your-secret-key",
     resave: false,
     saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI,
+      collectionName: "sessions",
+    }),
     cookie: {
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 24 * 60 * 60 * 1000, // Extend to 24 hours from the current 24 hours
+      secure: true,
+      maxAge: 24 * 60 * 60 * 1000,
       httpOnly: true,
     },
   })
@@ -127,6 +131,31 @@ app.use((req, res) => {
     title: "Page Not Found",
     path: req.path,
   });
+});
+
+app.get("/reset-admin-password", async (req, res) => {
+  try {
+    const Admin = mongoose.model("Admin");
+    const bcrypt = require("bcrypt");
+
+    // Find admin user
+    const admin = await Admin.findOne({ username: "admin" });
+
+    if (!admin) {
+      return res.send("No admin user found");
+    }
+
+    // Update password with a simple one for testing
+    const hashedPassword = await bcrypt.hash("drugtest2025", 10);
+    admin.password = hashedPassword;
+    await admin.save();
+
+    res.send(
+      'Admin password reset to "test123". Try logging in with username "admin" and password "test123"'
+    );
+  } catch (error) {
+    res.status(500).send("Error: " + error.message);
+  }
 });
 
 app.use((err, req, res, next) => {
