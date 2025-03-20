@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const mongoose = require("mongoose");
 const MONGODB_URI = process.env.MONGODB_URI;
 const MongoStore = require("connect-mongo");
@@ -10,9 +12,6 @@ const fileUpload = require("express-fileupload");
 const routes = require("./routes");
 const ensureDataDirectories = require("./ensure-data-dir");
 
-// Load environment variables
-dotenv.config();
-
 // Ensure data directories exist
 ensureDataDirectories();
 
@@ -23,39 +22,18 @@ const PORT = process.env.PORT || 3000;
 // Connect to MongoDB
 if (process.env.NODE_ENV === "production") {
   mongoose
-    .connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
+    .connect(MONGODB_URI, {})
     .then(() => {
       console.log("MongoDB Connected");
 
-      // Import and run admin creation
-      const { createAdminUser } = require("./routes/mongodbRoutes");
+      // Import and run admin creation from the central models registry
+      const { createAdminUser } = require("./models/index");
       createAdminUser();
     })
     .catch((err) => {
       console.error("MongoDB Connection Error:", err.message);
     });
 }
-
-// Session configuration
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || "your-secret-key",
-    resave: false,
-    saveUninitialized: false,
-    store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI,
-      collectionName: "sessions",
-    }),
-    cookie: {
-      secure: process.env.NODE_ENV === "production",
-      httpOnly: true,
-      maxAge: 24 * 60 * 60 * 1000, // 24 hours
-    },
-  })
-);
 
 // Set view engine
 app.set("view engine", "ejs");
@@ -97,6 +75,47 @@ app.use(
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
   next();
+});
+
+app.get("/debug-auth", async (req, res) => {
+  try {
+    const adminModel = mongoose.models.Admin;
+    let adminExists = null;
+    let adminCount = 0;
+
+    if (adminModel) {
+      try {
+        adminCount = await adminModel.countDocuments();
+        adminExists = await adminModel.findOne({
+          username: process.env.ADMIN_USERNAME,
+        });
+      } catch (err) {
+        console.error("Error querying Admin model:", err);
+      }
+    }
+
+    res.json({
+      session: {
+        id: req.session?.id,
+        isAuthenticated: req.session?.isAuthenticated,
+        user: req.session?.user,
+      },
+      mongoConnected: mongoose.connection?.readyState === 1,
+      models: Object.keys(mongoose.models),
+      adminModelExists: !!adminModel,
+      adminCount: adminCount,
+      adminExists: !!adminExists,
+      adminUsername: adminExists ? adminExists.username : null,
+      envVars: {
+        nodeEnv: process.env.NODE_ENV,
+        hasUsername: !!process.env.ADMIN_USERNAME,
+        hasPassword: !!process.env.ADMIN_PASSWORD,
+        hasMongoDB: !!process.env.MONGODB_URI,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message, stack: error.stack });
+  }
 });
 
 // Routes

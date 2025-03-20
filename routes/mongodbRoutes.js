@@ -1,42 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
-
-// Create admin schema
-const adminSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-});
-
-// Create model
-const Admin = mongoose.model("Admin", adminSchema);
-
-// Create admin user if it doesn't exist
-async function createAdminUser() {
-  try {
-    const adminExists = await Admin.findOne({
-      username: process.env.ADMIN_USERNAME,
-    });
-
-    if (!adminExists) {
-      const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10);
-      const admin = new Admin({
-        username: process.env.ADMIN_USERNAME,
-        password: hashedPassword,
-      });
-      await admin.save();
-      console.log("Admin user created successfully");
-    } else {
-      console.log("Admin user already exists");
-    }
-  } catch (error) {
-    console.error("Error creating admin user:", error);
-  }
-}
-
-// Call createAdminUser function
-createAdminUser();
+const { Admin, createAdminUser } = require("../models/index");
 
 // Setup a diagnostic route
 router.get("/create-admin", async (req, res) => {
@@ -48,7 +12,21 @@ router.get("/create-admin", async (req, res) => {
   }
 });
 
-// Export the Admin model and router
+// Add a debug route
+router.get("/debug", async (req, res) => {
+  try {
+    const adminCount = await Admin.countDocuments();
+    const admin = await Admin.findOne({ username: process.env.ADMIN_USERNAME });
+
+    res.json({
+      adminCount,
+      adminExists: !!admin,
+      adminUsername: admin ? admin.username : null,
+      mongooseModels: Object.keys(mongoose.models),
+    });
+  } catch (error) {
+    res.status(500).send("Error: " + error.message);
+  }
+});
+
 module.exports = router;
-module.exports.Admin = Admin;
-module.exports.adminSchema = adminSchema;

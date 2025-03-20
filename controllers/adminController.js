@@ -1,10 +1,6 @@
-const adminSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
-});
-
-const Admin = mongoose.model("Admin", adminSchema);
+const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+const { Admin } = require("../models/index");
 const Employee = require("../models/Employee");
 const RandomizedEmployee = require("../models/RandomizedEmployee");
 const csvService = require("../services/csvService");

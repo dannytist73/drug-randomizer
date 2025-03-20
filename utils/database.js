@@ -11,10 +11,7 @@ const isProduction = process.env.NODE_ENV === "production";
 // Connect to MongoDB if in production
 if (isProduction && MONGODB_URI) {
   mongoose
-    .connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    })
+    .connect(MONGODB_URI, {})
     .then(() => {
       console.log("Connected to MongoDB");
     })
