@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const MONGODB_URI = process.env.MONGODB_URI;
+const MongoStore = require("connect-mongo");
 const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
@@ -15,23 +16,46 @@ dotenv.config();
 // Ensure data directories exist
 ensureDataDirectories();
 
-// Database connection
+// Initialize express app
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Connect to MongoDB
 if (process.env.NODE_ENV === "production") {
   mongoose
     .connect(MONGODB_URI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     })
-    .then(() => console.log("MongoDB Connected"))
+    .then(() => {
+      console.log("MongoDB Connected");
+
+      // Import and run admin creation
+      const { createAdminUser } = require("./routes/mongodbRoutes");
+      createAdminUser();
+    })
     .catch((err) => {
       console.error("MongoDB Connection Error:", err.message);
-      // Provide fallback or graceful error handling
     });
 }
 
-// Initialize express app
-const app = express();
-const PORT = process.env.PORT || 3000;
+// Session configuration
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "your-secret-key",
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+      mongoUrl: process.env.MONGODB_URI,
+      collectionName: "sessions",
+    }),
+    cookie: {
+      secure: process.env.NODE_ENV === "production",
+      httpOnly: true,
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    },
+  })
+);
 
 // Set view engine
 app.set("view engine", "ejs");

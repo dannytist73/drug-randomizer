@@ -1,3 +1,9 @@
+const adminSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+});
+
+const Admin = mongoose.model("Admin", adminSchema);
 const bcrypt = require("bcrypt");
 const Employee = require("../models/Employee");
 const RandomizedEmployee = require("../models/RandomizedEmployee");
@@ -32,28 +38,45 @@ const adminController = {
    * @param {Object} req - Express request object
    * @param {Object} res - Express response object
    */
-  postLogin: (req, res) => {
-    const { username, password } = req.body;
+  postLogin: async (req, res) => {
+    try {
+      const { username, password } = req.body;
 
-    // Get admin credentials from environment variables or use defaults
-    const adminUser = process.env.ADMIN_USERNAME || "admin";
-    const adminPass = process.env.ADMIN_PASSWORD || "drugtest2023";
+      // First try environment variables (for backward compatibility)
+      if (
+        username === process.env.ADMIN_USERNAME &&
+        password === process.env.ADMIN_PASSWORD
+      ) {
+        req.session.isAuthenticated = true;
+        req.session.user = { username };
+        return res.redirect("/admin/dashboard");
+      }
 
-    // Simple authentication (in a real app, use hashed passwords in a database)
-    if (username === adminUser && password === adminPass) {
-      // Set session variables
-      req.session.isAuthenticated = true;
-      req.session.user = { username: adminUser };
+      // Then check database
+      const admin = await Admin.findOne({ username });
+      if (admin) {
+        // If using hashed passwords
+        const passwordMatch = await bcrypt.compare(password, admin.password);
 
-      // Redirect to original destination or dashboard
-      const redirectTo = req.session.returnTo || "/admin/dashboard";
-      delete req.session.returnTo;
+        if (passwordMatch) {
+          req.session.isAuthenticated = true;
+          req.session.user = { username: admin.username };
+          return res.redirect("/admin/dashboard");
+        }
+      }
 
-      res.redirect(redirectTo);
-    } else {
-      // Set error message and redirect back to login
-      req.session.loginError = "Invalid username or password";
-      res.redirect("/admin/login");
+      return res.render("admin/login", {
+        title: "Admin Login",
+        error: "Invalid username or password",
+        username,
+      });
+    } catch (error) {
+      console.error("Login error:", error);
+      return res.render("admin/login", {
+        title: "Admin Login",
+        error: "An error occurred during login",
+        username: req.body.username,
+      });
     }
   },
 
