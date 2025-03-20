@@ -1,9 +1,15 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const { Admin } = require("../models/index");
-const Employee = require("../models/Employee");
-const RandomizedEmployee = require("../models/RandomizedEmployee");
+const { isProduction, getModel } = require("../utils/database");
+const Employee = isProduction
+  ? require("../models/mongodb/Employee")
+  : require("../models/Employee");
+const RandomizedEmployee = isProduction
+  ? require("../models/mongodb/RandomizedEmployee")
+  : require("../models/RandomizedEmployee");
 const csvService = require("../services/csvService");
+const excelExporter = require("../utils/excelExporter");
 
 /**
  * Controller for handling admin-related routes and functionality
@@ -16,7 +22,8 @@ const adminController = {
    */
   getLoginPage: (req, res) => {
     // If already logged in, redirect to dashboard
-    if (req.session.isAuthenticated) {
+    if (req.session && req.session.isAuthenticated) {
+      console.log("User already authenticated, redirecting to dashboard");
       return res.redirect("/admin/dashboard");
     }
 
@@ -36,43 +43,87 @@ const adminController = {
    */
   postLogin: async (req, res) => {
     try {
+      console.log("Login attempt received");
       const { username, password } = req.body;
 
-      // First try environment variables (for backward compatibility)
+      // Try environment variables first (for backward compatibility)
       if (
+        process.env.ADMIN_USERNAME &&
+        process.env.ADMIN_PASSWORD &&
         username === process.env.ADMIN_USERNAME &&
         password === process.env.ADMIN_PASSWORD
       ) {
-        req.session.isAuthenticated = true;
-        req.session.user = { username };
-        return res.redirect("/admin/dashboard");
+        console.log("Login successful via env variables");
+
+        // Wait for the session to be saved before redirecting
+        return new Promise((resolve) => {
+          req.session.isAuthenticated = true;
+          req.session.user = {
+            username,
+            loginTime: new Date().toISOString(),
+          };
+
+          req.session.save((err) => {
+            if (err) {
+              console.error("Session save error:", err);
+              req.session.loginError = "Session error: " + err.message;
+              resolve(res.redirect("/admin/login"));
+            } else {
+              console.log("Session successfully saved, redirecting...");
+              // Add a small delay to ensure session is fully persisted
+              setTimeout(() => {
+                resolve(res.redirect("/admin/dashboard"));
+              }, 100);
+            }
+          });
+        });
       }
 
-      // Then check database
+      // Check database for admin user
+      console.log("Checking database for user:", username);
       const admin = await Admin.findOne({ username });
+      console.log("Admin found in database:", !!admin);
+
       if (admin) {
-        // If using hashed passwords
+        // Check password
         const passwordMatch = await bcrypt.compare(password, admin.password);
+        console.log("Password match:", passwordMatch);
 
         if (passwordMatch) {
-          req.session.isAuthenticated = true;
-          req.session.user = { username: admin.username };
-          return res.redirect("/admin/dashboard");
+          console.log("Setting authenticated session");
+
+          // Wait for the session to be saved before redirecting
+          return new Promise((resolve) => {
+            req.session.isAuthenticated = true;
+            req.session.user = {
+              username: admin.username,
+              loginTime: new Date().toISOString(),
+            };
+
+            req.session.save((err) => {
+              if (err) {
+                console.error("Session save error:", err);
+                req.session.loginError = "Session error: " + err.message;
+                resolve(res.redirect("/admin/login"));
+              } else {
+                console.log("Session successfully saved, redirecting...");
+                setTimeout(() => {
+                  resolve(res.redirect("/admin/dashboard"));
+                }, 100);
+              }
+            });
+          });
         }
       }
 
-      return res.render("admin/login", {
-        title: "Admin Login",
-        error: "Invalid username or password",
-        username,
-      });
+      console.log("Authentication failed for user:", username);
+      req.session.loginError = "Invalid username or password";
+      return res.redirect("/admin/login");
     } catch (error) {
       console.error("Login error:", error);
-      return res.render("admin/login", {
-        title: "Admin Login",
-        error: "An error occurred during login",
-        username: req.body.username,
-      });
+      req.session.loginError =
+        "An error occurred during login: " + error.message;
+      return res.redirect("/admin/login");
     }
   },
 
@@ -98,10 +149,26 @@ const adminController = {
    */
   getDashboard: async (req, res) => {
     try {
+      console.log(
+        "Loading dashboard. User authenticated:",
+        req.session.isAuthenticated
+      );
+
       // Get employee statistics
-      const allEmployees = Employee.getAllEmployees();
-      const randomizedThisYear =
-        RandomizedEmployee.getCurrentYearRandomizedEmployees();
+      let allEmployees = [];
+      let randomizedThisYear = [];
+
+      if (isProduction) {
+        // In production, methods return promises
+        allEmployees = await Employee.getAllEmployees();
+        randomizedThisYear =
+          await RandomizedEmployee.getCurrentYearRandomizedEmployees();
+      } else {
+        // In development, methods return values directly
+        allEmployees = Employee.getAllEmployees();
+        randomizedThisYear =
+          RandomizedEmployee.getCurrentYearRandomizedEmployees();
+      }
 
       // Calculate statistics
       const stats = {
@@ -153,7 +220,11 @@ const adminController = {
 
       // If append mode is enabled and we already have employees, get them first
       if (appendMode) {
-        allEmployeesData = Employee.getAllEmployees();
+        if (isProduction) {
+          allEmployeesData = await Employee.getAllEmployees();
+        } else {
+          allEmployeesData = Employee.getAllEmployees();
+        }
       }
 
       // Process each CSV file
@@ -189,7 +260,12 @@ const adminController = {
       }
 
       // Save all employees to the data store
-      const saved = Employee.saveEmployees(allEmployeesData);
+      let saved;
+      if (isProduction) {
+        saved = await Employee.saveEmployees(allEmployeesData);
+      } else {
+        saved = Employee.saveEmployees(allEmployeesData);
+      }
 
       if (saved) {
         req.session.message = {
@@ -221,9 +297,14 @@ const adminController = {
    * @param {Object} req - Express request object
    * @param {Object} res - Express response object
    */
-  getEmployees: (req, res) => {
+  getEmployees: async (req, res) => {
     try {
-      const employees = Employee.getAllEmployees();
+      let employees;
+      if (isProduction) {
+        employees = await Employee.getAllEmployees();
+      } else {
+        employees = Employee.getAllEmployees();
+      }
 
       res.render("admin/employees", {
         title: "Employee List",
@@ -247,18 +328,30 @@ const adminController = {
    * @param {Object} req - Express request object
    * @param {Object} res - Express response object
    */
-  deleteAllEmployees: (req, res) => {
+  deleteAllEmployees: async (req, res) => {
     try {
       // Check if randomized data should also be deleted
       const deleteRandomized = req.body.deleteRandomized === "true";
 
       // Delete employees data
-      const employeesDeleted = Employee.deleteAllEmployees();
-
-      // Delete randomized data if requested
+      let employeesDeleted;
       let randomizedDeleted = false;
-      if (deleteRandomized) {
-        randomizedDeleted = RandomizedEmployee.deleteAllRandomizedEmployees();
+
+      if (isProduction) {
+        employeesDeleted = await Employee.deleteAllEmployees();
+
+        // Delete randomized data if requested
+        if (deleteRandomized) {
+          randomizedDeleted =
+            await RandomizedEmployee.deleteAllRandomizedEmployees();
+        }
+      } else {
+        employeesDeleted = Employee.deleteAllEmployees();
+
+        // Delete randomized data if requested
+        if (deleteRandomized) {
+          randomizedDeleted = RandomizedEmployee.deleteAllRandomizedEmployees();
+        }
       }
 
       if (employeesDeleted) {
@@ -291,7 +384,7 @@ const adminController = {
    * @param {Object} req - Express request object
    * @param {Object} res - Express response object
    */
-  deleteEmployee: (req, res) => {
+  deleteEmployee: async (req, res) => {
     try {
       const employeeId = req.params.id;
 
@@ -303,7 +396,12 @@ const adminController = {
         return res.redirect("/admin/employees");
       }
 
-      const deleted = Employee.deleteEmployeeById(employeeId);
+      let deleted;
+      if (isProduction) {
+        deleted = await Employee.deleteEmployeeById(employeeId);
+      } else {
+        deleted = Employee.deleteEmployeeById(employeeId);
+      }
 
       if (deleted) {
         req.session.message = {
@@ -335,7 +433,12 @@ const adminController = {
    */
   exportEmployeesToExcel: async (req, res) => {
     try {
-      const employees = Employee.getAllEmployees();
+      let employees;
+      if (isProduction) {
+        employees = await Employee.getAllEmployees();
+      } else {
+        employees = Employee.getAllEmployees();
+      }
 
       if (employees.length === 0) {
         req.session.message = { type: "error", text: "No employees to export" };

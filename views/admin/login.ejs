@@ -97,3 +97,26 @@
     </div>
   </div>
 </div>
+
+<!-- Add this script to the bottom of your login.ejs file -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("Login page loaded");
+
+    // Check for cookies
+    console.log("Current cookies:", document.cookie);
+
+    // Add a timestamp to prevent caching
+    const form = document.querySelector("form");
+    form.addEventListener("submit", function (e) {
+      console.log("Form submitted");
+
+      // Add a hidden field with timestamp to prevent browser caching
+      const hiddenField = document.createElement("input");
+      hiddenField.type = "hidden";
+      hiddenField.name = "timestamp";
+      hiddenField.value = Date.now();
+      this.appendChild(hiddenField);
+    });
+  });
+</script>
