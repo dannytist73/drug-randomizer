@@ -1,0 +1,529 @@
+<div class="container mx-auto px-4 py-8">
+  <!-- Page Header -->
+  <div class="mb-10 text-center">
+    <h1 class="text-3xl font-bold text-blue-900 mb-4">
+      Drug Awareness Resources
+    </h1>
+    <p class="text-lg text-gray-600 max-w-3xl mx-auto">
+      Education is key to prevention. Learn about drug addiction, its effects,
+      and how to seek help through our comprehensive resources.
+    </p>
+  </div>
+
+  <!-- Featured Articles -->
+  <div class="mb-16">
+    <h2 class="text-2xl font-bold text-blue-900 mb-6">Featured Articles</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <% resources.forEach(resource => { %>
+      <div
+        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+      >
+        <div
+          class="h-56 bg-cover bg-center"
+          style="background-image: url('<%= resource.imageUrl %>')"
+        ></div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-3 text-blue-900">
+            <%= resource.title %>
+          </h3>
+          <p class="text-gray-700 mb-4"><%= resource.content %></p>
+          <a
+            href="/resources/<%= resource.slug %>"
+            class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+          >
+            Read More
+            <svg
+              class="w-4 h-4 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+
+  <!-- Recent Blog Posts -->
+  <div class="mb-16">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-blue-900">Recent Articles</h2>
+      <a
+        href="/resources/all"
+        class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+      >
+        View All Articles
+        <svg
+          class="w-4 h-4 ml-1"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M14 5l7 7m0 0l-7 7m7-7H3"
+          ></path>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <!-- Blog Post 1 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="md:flex">
+          <div class="md:flex-shrink-0">
+            <img
+              class="h-48 w-full object-cover md:w-48"
+              src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3"
+              alt="Drug prevention"
+            />
+          </div>
+          <div class="p-6">
+            <div class="text-sm text-blue-600 mb-1">Prevention</div>
+            <h3 class="text-lg font-bold text-blue-900 mb-2">
+              Early Signs of Drug Dependency: What to Watch For
+            </h3>
+            <p class="text-gray-700 mb-4 line-clamp-3">
+              Recognizing the early warning signs of drug dependency can make a
+              significant difference in timely intervention. Learn about
+              behavioral, physical, and psychological indicators that may
+              suggest substance abuse issues.
+            </p>
+            <a
+              href="/resources/early-signs-of-drug-dependency"
+              class="text-blue-600 hover:text-blue-800 font-medium"
+            >
+              Continue Reading →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog Post 2 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="md:flex">
+          <div class="md:flex-shrink-0">
+            <img
+              class="h-48 w-full object-cover md:w-48"
+              src="https://images.unsplash.com/photo-1529180979161-06b8b6d6f2be?q=80&w=1742&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Recovery journey"
+            />
+          </div>
+          <div class="p-6">
+            <div class="text-sm text-blue-600 mb-1">Recovery</div>
+            <h3 class="text-lg font-bold text-blue-900 mb-2">
+              Supporting a Loved One Through Recovery
+            </h3>
+            <p class="text-gray-700 mb-4 line-clamp-3">
+              Family support plays a crucial role in successful recovery. This
+              guide provides practical advice for family members and friends on
+              how to provide effective support while maintaining healthy
+              boundaries.
+            </p>
+            <a
+              href="/resources/supporting-loved-ones-recovery"
+              class="text-blue-600 hover:text-blue-800 font-medium"
+            >
+              Continue Reading →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog Post 3 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="md:flex">
+          <div class="md:flex-shrink-0">
+            <img
+              class="h-48 w-full object-cover md:w-48"
+              src="https://images.unsplash.com/photo-1448375240586-882707db888b?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3"
+              alt="Philippines drug policy"
+            />
+          </div>
+          <div class="p-6">
+            <div class="text-sm text-blue-600 mb-1">Policy</div>
+            <h3 class="text-lg font-bold text-blue-900 mb-2">
+              Current Drug Policy in the Philippines: What You Need to Know
+            </h3>
+            <p class="text-gray-700 mb-4 line-clamp-3">
+              Understanding the legal framework around drug use, possession, and
+              rehabilitation in the Philippines is important for both prevention
+              and seeking help. This article provides an overview of current
+              policies.
+            </p>
+            <a
+              href="/resources/philippines-drug-policy"
+              class="text-blue-600 hover:text-blue-800 font-medium"
+            >
+              Continue Reading →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Blog Post 4 -->
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="md:flex">
+          <div class="md:flex-shrink-0">
+            <img
+              class="h-48 w-full object-cover md:w-48"
+              src="https://images.unsplash.com/photo-1521791136064-7986c2920216?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3"
+              alt="Workplace testing"
+            />
+          </div>
+          <div class="p-6">
+            <div class="text-sm text-blue-600 mb-1">Workplace</div>
+            <h3 class="text-lg font-bold text-blue-900 mb-2">
+              Creating an Effective Workplace Drug Testing Program
+            </h3>
+            <p class="text-gray-700 mb-4 line-clamp-3">
+              Workplace drug testing programs need to balance thoroughness with
+              sensitivity. Learn best practices for implementing a fair,
+              consistent, and effective drug testing program that promotes
+              safety while respecting dignity.
+            </p>
+            <a
+              href="/resources/workplace-testing-program"
+              class="text-blue-600 hover:text-blue-800 font-medium"
+            >
+              Continue Reading →
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reading Materials Section -->
+  <div class="bg-blue-50 rounded-lg p-8 mb-16">
+    <h2 class="text-2xl font-bold text-blue-900 mb-6">
+      Recommended Reading Materials
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="font-bold text-lg mb-2">For Parents & Educators</h3>
+        <ul class="list-disc list-inside space-y-2 text-gray-700">
+          <li>
+            <a
+              href="/resources/parent-guide"
+              class="text-blue-600 hover:text-blue-800"
+              >Understanding Drug Addiction: A Guide for Families</a
+            >
+          </li>
+          <li>
+            <a
+              href="/resources/talking-to-children"
+              class="text-blue-600 hover:text-blue-800"
+              >How to Talk to Your Children About Drugs</a
+            >
+          </li>
+          <li>
+            <a
+              href="/resources/warning-signs"
+              class="text-blue-600 hover:text-blue-800"
+              >Warning Signs and Intervention Strategies</a
+            >
+          </li>
+          <li>
+            <a
+              href="/resources/drug-free-schools"
+              class="text-blue-600 hover:text-blue-800"
+              >Creating Drug-Free Schools and Communities</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="font-bold text-lg mb-2">For Healthcare Professionals</h3>
+        <ul class="list-disc list-inside space-y-2 text-gray-700">
+          <li>
+            <a
+              href="/resources/treatment-protocols"
+              class="text-blue-600 hover:text-blue-800"
+              >Substance Abuse Treatment Protocols</a
+            >
+          </li>
+          <li>
+            <a
+              href="/resources/co-occurring-disorders"
+              class="text-blue-600 hover:text-blue-800"
+              >Co-occurring Disorders and Integrated Treatment</a
+            >
+          </li>
+          <li>
+            <a
+              href="/resources/addiction-research"
+              class="text-blue-600 hover:text-blue-800"
+              >Addiction Medicine: Latest Research</a
+            >
+          </li>
+          <li>
+            <a
+              href="/resources/rehabilitation-approaches"
+              class="text-blue-600 hover:text-blue-800"
+              >Rehabilitation Approaches and Best Practices</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h3 class="font-bold text-lg mb-2">For Employers & Workplaces</h3>
+        <ul class="list-disc list-inside space-y-2 text-gray-700">
+          <li>
+            <a
+              href="/resources/testing-programs"
+              class="text-blue-600 hover:text-blue-800"
+              >Creating Effective Drug Testing Programs</a
+            >
+          </li>
+          <li>
+            <a
+              href="/resources/supporting-employees"
+              class="text-blue-600 hover:text-blue-800"
+              >Supporting Employees in Recovery</a
+            >
+          </li>
+          <li>
+            <a
+              href="/resources/workplace-policies"
+              class="text-blue-600 hover:text-blue-800"
+              >Drug-Free Workplace Policies</a
+            >
+          </li>
+          <li>
+            <a
+              href="/resources/legal-considerations"
+              class="text-blue-600 hover:text-blue-800"
+              >Legal Considerations for Workplace Testing</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Baguio City Rehabilitation Centers Section -->
+  <div class="mb-16">
+    <h2 class="text-2xl font-bold text-blue-900 mb-6">
+      Treatment and Rehabilitation Centers in Baguio City
+    </h2>
+
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th
+                scope="col"
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Facility Name
+              </th>
+              <th
+                scope="col"
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Address
+              </th>
+              <th
+                scope="col"
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Contact
+              </th>
+              <th
+                scope="col"
+                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+              >
+                Services
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="font-medium text-gray-900">
+                  Baguio General Hospital and Medical Center - Psychiatric
+                  Department
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-gray-900">
+                  Baguio General Hospital Compound, Governor Pack Road, Baguio
+                  City
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-gray-900">(074) 442-4216</div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-gray-900">
+                  Assessment, Counseling, Outpatient Treatment
+                </div>
+              </td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="font-medium text-gray-900">
+                  Helping Hands, Healing Hearts Ministry Center
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-gray-900">Km. 4, Asin Road, Baguio City</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-gray-900">(074) 424-3852</div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-gray-900">
+                  Residential Treatment, Faith-based Recovery Program
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="font-medium text-gray-900">
+                  Cordillera Center for Recovery and Wellness
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-gray-900">18 Rimando Road, Baguio City</div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-gray-900">(074) 442-7894</div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-gray-900">
+                  Detoxification, Rehabilitation, Aftercare
+                </div>
+              </td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="font-medium text-gray-900">
+                  DOH Treatment and Rehabilitation Center - CAR
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-gray-900">
+                  Baguio-La Trinidad Road, Benguet (Near Baguio City)
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-gray-900">(074) 422-1188</div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-gray-900">
+                  Government Facility, Comprehensive Treatment Programs
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="font-medium text-gray-900">
+                  Saint Louis University - Center for Counseling and Development
+                </div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-gray-900">
+                  Saint Louis University, A. Bonifacio Street, Baguio City
+                </div>
+              </td>
+              <td class="px-6 py-4 whitespace-nowrap">
+                <div class="text-gray-900">(074) 442-3043</div>
+              </td>
+              <td class="px-6 py-4">
+                <div class="text-gray-900">
+                  Counseling, Assessment, Referral Services
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="bg-gray-50 px-6 py-4 border-t">
+        <p class="text-sm text-gray-600">
+          Note: Please contact the facilities directly for detailed information
+          about their services, admission requirements, and costs. Most
+          facilities require prior assessment and appointments for intake.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Maps Section -->
+  <div class="mb-16">
+    <h2 class="text-2xl font-bold text-blue-900 mb-6">
+      Baguio City Rehabilitation Centers Map
+    </h2>
+
+    <div class="bg-white rounded-lg shadow-md overflow-hidden p-6">
+      <p class="text-gray-700 mb-6">
+        View the locations of rehabilitation centers in Baguio City. Click on
+        any marker for more information about the facility.
+      </p>
+
+      <div class="h-96 bg-gray-200 rounded-lg flex items-center justify-center">
+        <div class="text-center">
+          <svg
+            class="w-12 h-12 text-gray-400 mx-auto mb-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"
+            ></path>
+          </svg>
+          <p class="text-gray-500">
+            Interactive map of rehabilitation centers available in full version.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="bg-blue-900 text-white rounded-lg shadow-lg p-8 text-center">
+    <h2 class="text-2xl font-bold mb-4">Need Help Now?</h2>
+    <p class="text-blue-100 max-w-2xl mx-auto mb-6">
+      If you or someone you know is struggling with substance abuse, help is
+      available. Don't wait until the situation worsens. Reach out to
+      professionals who can provide guidance and support.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a
+        href="/authorities"
+        class="bg-white text-blue-900 hover:bg-blue-100 font-bold py-3 px-6 rounded-lg transition inline-block"
+      >
+        Contact Support Hotlines
+      </a>
+      <a
+        href="/resources/get-help"
+        class="bg-blue-700 hover:bg-blue-800 text-white font-bold py-3 px-6 rounded-lg transition inline-block border border-blue-600"
+      >
+        How to Get Help
+      </a>
+    </div>
+  </div>
+</div>

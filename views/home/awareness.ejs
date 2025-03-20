@@ -1,0 +1,332 @@
+<div class="container mx-auto px-4 py-8">
+  <!-- Page Header -->
+  <div class="mb-10 text-center">
+    <h1 class="text-3xl font-bold text-blue-900 mb-4"><%= content.title %></h1>
+    <p class="text-lg text-gray-600 max-w-3xl mx-auto"><%= content.intro %></p>
+  </div>
+
+  <!-- Warning Signs Section -->
+  <div class="mb-16">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="bg-red-50 p-6 border-b border-red-200">
+        <h2 class="text-2xl font-bold text-red-800 mb-2">
+          <%= content.sections[0].title %>
+        </h2>
+        <p class="text-gray-700">
+          Recognizing the early signs of drug use can help with timely
+          intervention.
+        </p>
+      </div>
+      <div class="p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <% content.sections[0].points.forEach((point, index) => { %>
+          <div class="flex items-start">
+            <div class="flex-shrink-0 mt-1">
+              <svg
+                class="h-5 w-5 text-red-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                ></path>
+              </svg>
+            </div>
+            <p class="ml-3 text-gray-700"><%= point %></p>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Common Drugs Section -->
+  <div class="mb-16">
+    <h2 class="text-2xl font-bold text-blue-900 mb-6">
+      <%= content.sections[1].title %>
+    </h2>
+
+    <div class="space-y-6">
+      <% content.sections[1].drugs.forEach((drug, index) => { %>
+      <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="bg-blue-50 p-4 border-b border-blue-200">
+          <h3 class="text-xl font-bold text-blue-800"><%= drug.name %></h3>
+        </div>
+        <div class="p-6">
+          <div class="flex items-start">
+            <div class="flex-shrink-0 mt-1">
+              <svg
+                class="h-5 w-5 text-blue-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                ></path>
+              </svg>
+            </div>
+            <div class="ml-3">
+              <p class="text-gray-700">
+                <strong>Effects:</strong> <%= drug.effects %>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+
+  <!-- Long-term Consequences Section -->
+  <div class="mb-16">
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="bg-yellow-50 p-6 border-b border-yellow-200">
+        <h2 class="text-2xl font-bold text-yellow-800 mb-2">
+          <%= content.sections[2].title %>
+        </h2>
+      </div>
+      <div class="p-6">
+        <p class="text-gray-700 leading-relaxed">
+          <%= content.sections[2].content %>
+        </p>
+
+        <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div class="bg-yellow-50 p-4 rounded-md">
+            <h4 class="font-bold text-yellow-800 mb-2">Health Impact</h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-1">
+              <li>Organ damage (heart, liver, lungs)</li>
+              <li>Mental health disorders</li>
+              <li>Weakened immune system</li>
+              <li>Increased risk of infections</li>
+              <li>Malnutrition and weight loss</li>
+            </ul>
+          </div>
+
+          <div class="bg-yellow-50 p-4 rounded-md">
+            <h4 class="font-bold text-yellow-800 mb-2">Social Consequences</h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-1">
+              <li>Strained family relationships</li>
+              <li>Loss of friendships</li>
+              <li>Social isolation</li>
+              <li>Domestic violence</li>
+              <li>Child neglect or abuse</li>
+            </ul>
+          </div>
+
+          <div class="bg-yellow-50 p-4 rounded-md">
+            <h4 class="font-bold text-yellow-800 mb-2">
+              Economic & Legal Issues
+            </h4>
+            <ul class="list-disc list-inside text-gray-700 space-y-1">
+              <li>Job loss and unemployment</li>
+              <li>Financial difficulties</li>
+              <li>Legal problems and incarceration</li>
+              <li>Criminal record</li>
+              <li>Homelessness</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Intervention & Help Section -->
+  <div class="mb-16">
+    <h2 class="text-2xl font-bold text-blue-900 mb-6">
+      Intervention & Getting Help
+    </h2>
+
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <div class="p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div>
+            <h3 class="text-xl font-bold text-blue-800 mb-4">
+              Approaching Someone with Addiction
+            </h3>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <div class="flex-shrink-0 mt-1">
+                  <svg
+                    class="h-5 w-5 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="ml-3 text-gray-700">
+                  Choose the right time and place - private, calm environment
+                </p>
+              </li>
+              <li class="flex items-start">
+                <div class="flex-shrink-0 mt-1">
+                  <svg
+                    class="h-5 w-5 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="ml-3 text-gray-700">
+                  Express concern, not anger or judgment
+                </p>
+              </li>
+              <li class="flex items-start">
+                <div class="flex-shrink-0 mt-1">
+                  <svg
+                    class="h-5 w-5 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="ml-3 text-gray-700">
+                  Use "I" statements about how their behavior affects you
+                </p>
+              </li>
+              <li class="flex items-start">
+                <div class="flex-shrink-0 mt-1">
+                  <svg
+                    class="h-5 w-5 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="ml-3 text-gray-700">
+                  Offer specific examples of concerning behaviors
+                </p>
+              </li>
+              <li class="flex items-start">
+                <div class="flex-shrink-0 mt-1">
+                  <svg
+                    class="h-5 w-5 text-green-500"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    ></path>
+                  </svg>
+                </div>
+                <p class="ml-3 text-gray-700">
+                  Have treatment options ready to suggest
+                </p>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-bold text-blue-800 mb-4">
+              Treatment Options
+            </h3>
+            <div class="space-y-4">
+              <div class="border-l-4 border-blue-500 pl-4">
+                <h4 class="font-bold text-gray-800">Detoxification</h4>
+                <p class="text-gray-700">
+                  Medical supervision to safely manage withdrawal symptoms
+                </p>
+              </div>
+              <div class="border-l-4 border-blue-500 pl-4">
+                <h4 class="font-bold text-gray-800">
+                  Inpatient Rehabilitation
+                </h4>
+                <p class="text-gray-700">
+                  24/7 care in a structured residential setting
+                </p>
+              </div>
+              <div class="border-l-4 border-blue-500 pl-4">
+                <h4 class="font-bold text-gray-800">Outpatient Programs</h4>
+                <p class="text-gray-700">
+                  Regular treatment while living at home
+                </p>
+              </div>
+              <div class="border-l-4 border-blue-500 pl-4">
+                <h4 class="font-bold text-gray-800">Counseling & Therapy</h4>
+                <p class="text-gray-700">
+                  Individual, group, or family therapy approaches
+                </p>
+              </div>
+              <div class="border-l-4 border-blue-500 pl-4">
+                <h4 class="font-bold text-gray-800">Support Groups</h4>
+                <p class="text-gray-700">
+                  Community-based peer support networks
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="bg-blue-900 text-white rounded-lg shadow-lg p-8 text-center">
+    <h2 class="text-2xl font-bold mb-4">Recovery is Possible</h2>
+    <p class="text-blue-100 max-w-2xl mx-auto mb-6">
+      With proper support and treatment, recovery from drug addiction is
+      achievable. The journey begins with recognizing the problem and seeking
+      help.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a
+        href="/resources"
+        class="bg-white text-blue-900 hover:bg-blue-100 font-bold py-3 px-6 rounded-lg transition inline-block"
+      >
+        Find Resources
+      </a>
+      <a
+        href="/authorities"
+        class="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg transition inline-block"
+      >
+        Contact Support Hotlines
+      </a>
+    </div>
+  </div>
+</div>

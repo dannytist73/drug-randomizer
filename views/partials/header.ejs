@@ -1,0 +1,35 @@
+<header class="bg-blue-900 text-white shadow-md">
+  <div class="container mx-auto px-4 py-5">
+    <div class="flex justify-between items-center">
+      <div>
+        <h1 class="text-2xl font-bold">
+          <a href="/" class="hover:text-blue-200 transition">
+            Drug Test Randomizer
+          </a>
+        </h1>
+        <p class="text-blue-200 text-sm">Promoting a drug-free workplace</p>
+      </div>
+
+      <% if (locals.user) { %>
+      <div class="flex items-center">
+        <span class="mr-4 text-sm">Welcome, Admin</span>
+        <a
+          href="/admin/logout"
+          class="bg-red-700 hover:bg-red-800 text-white px-4 py-2 rounded text-sm transition"
+        >
+          Logout
+        </a>
+      </div>
+      <% } else { %>
+      <div>
+        <a
+          href="/admin/login"
+          class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded text-sm transition"
+        >
+          Admin Login
+        </a>
+      </div>
+      <% } %>
+    </div>
+  </div>
+</header>

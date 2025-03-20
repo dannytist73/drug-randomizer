@@ -1,0 +1,737 @@
+<div class="max-w-7xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-blue-900 mb-2">Employee List</h1>
+    <p class="text-gray-600">View and manage all employees in the system</p>
+  </div>
+
+  <% if (message) { %>
+  <div
+    class="<%= message.type === 'error' ? 'bg-red-100 border-red-500 text-red-700' : 'bg-green-100 border-green-500 text-green-700' %> border-l-4 p-4 mb-6 alert-dismissible"
+    role="alert"
+  >
+    <div class="flex items-center">
+      <div class="py-1">
+        <svg
+          class="w-6 h-6 mr-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="<%= message.type === 'error' ? 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' : 'M5 13l4 4L19 7' %>"
+          ></path>
+        </svg>
+      </div>
+      <div>
+        <p><%= message.text %></p>
+      </div>
+      <button type="button" class="ml-auto close-alert" aria-label="Close">
+        <span class="text-2xl" aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <% } %>
+
+  <!-- Action Buttons -->
+  <div class="flex flex-wrap gap-4 mb-6">
+    <a
+      href="/admin/dashboard"
+      class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition flex items-center"
+    >
+      <svg
+        class="w-5 h-5 mr-2"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
+        ></path>
+      </svg>
+      Back to Dashboard
+    </a>
+
+    <a
+      href="/admin/randomize"
+      class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition flex items-center"
+    >
+      <svg
+        class="w-5 h-5 mr-2"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+        ></path>
+      </svg>
+      Randomize Employees
+    </a>
+
+    <button
+      onclick="document.getElementById('uploadModal').classList.remove('hidden')"
+      class="bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-md transition flex items-center"
+    >
+      <svg
+        class="w-5 h-5 mr-2"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+        ></path>
+      </svg>
+      Upload CSV
+    </button>
+
+    <button
+      onclick="document.getElementById('deleteAllModal').classList.remove('hidden')"
+      class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md transition flex items-center"
+    >
+      <svg
+        class="w-5 h-5 mr-2"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+        ></path>
+      </svg>
+      Delete All Employees
+    </button>
+  </div>
+
+  <!-- Employees Table -->
+  <div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <div class="p-6 bg-gray-50 border-b border-gray-200">
+      <div class="flex justify-between items-center">
+        <h2 class="text-xl font-bold text-blue-900">All Employees</h2>
+        <div>
+          <% if (employees && employees.length > 0) { %>
+          <span class="text-gray-600"
+            >Total: <%= employees.length %> employees</span
+          >
+          <% } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="overflow-x-auto">
+      <% if (employees && employees.length > 0) { %>
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+          <tr>
+            <th
+              scope="col"
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Name
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Employee ID
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Department
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Position
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Email
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Join Date
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+            >
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+          <% employees.forEach((employee, index) => { %>
+          <tr class="<%= index % 2 === 0 ? 'bg-white' : 'bg-gray-50' %>">
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="font-medium text-gray-900">
+                <%= employee.firstName %> <%= employee.lastName %>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-gray-900">
+                <%= employee.employeeId || 'N/A' %>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-gray-900">
+                <%= employee.department || 'N/A' %>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-gray-900"><%= employee.position || 'N/A' %></div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-gray-900"><%= employee.email || 'N/A' %></div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <div class="text-gray-900">
+                <%= employee.joinDate ? new
+                Date(employee.joinDate).toLocaleDateString() : 'N/A' %>
+              </div>
+            </td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <button
+                onclick="openDeleteEmployeeModal('<%= employee.id %>', '<%= employee.firstName %> <%= employee.lastName %>')"
+                class="text-red-600 hover:text-red-900"
+              >
+                <svg
+                  class="w-5 h-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                  ></path>
+                </svg>
+              </button>
+            </td>
+          </tr>
+          <% }); %>
+        </tbody>
+      </table>
+      <% } else { %>
+      <div class="p-6 text-center">
+        <p class="text-gray-700 mb-4">
+          No employee data available. Please upload employee data first.
+        </p>
+        <button
+          onclick="document.getElementById('uploadModal').classList.remove('hidden')"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition inline-block"
+        >
+          Upload CSV
+        </button>
+      </div>
+      <% } %>
+    </div>
+  </div>
+
+  <!-- Filters and Search Section -->
+  <% if (employees && employees.length > 0) { %>
+  <div class="mt-8 bg-white rounded-lg shadow-md p-6">
+    <h3 class="text-lg font-bold text-blue-900 mb-4">Filter & Search</h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div>
+        <label
+          for="departmentFilter"
+          class="block text-sm font-medium text-gray-700 mb-1"
+          >Department</label
+        >
+        <select
+          id="departmentFilter"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        >
+          <option value="">All Departments</option>
+          <!-- Dynamically populate with unique departments -->
+        </select>
+      </div>
+
+      <div>
+        <label
+          for="positionFilter"
+          class="block text-sm font-medium text-gray-700 mb-1"
+          >Position</label
+        >
+        <select
+          id="positionFilter"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        >
+          <option value="">All Positions</option>
+          <!-- Dynamically populate with unique positions -->
+        </select>
+      </div>
+
+      <div>
+        <label
+          for="joinDateFilter"
+          class="block text-sm font-medium text-gray-700 mb-1"
+          >Join Date</label
+        >
+        <select
+          id="joinDateFilter"
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        >
+          <option value="">All Dates</option>
+          <option value="1">Last 30 days</option>
+          <option value="3">Last 3 months</option>
+          <option value="6">Last 6 months</option>
+          <option value="12">Last year</option>
+        </select>
+      </div>
+
+      <div>
+        <label
+          for="searchInput"
+          class="block text-sm font-medium text-gray-700 mb-1"
+          >Search</label
+        >
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search employees..."
+          class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+      </div>
+    </div>
+
+    <div class="mt-4 flex justify-end">
+      <button
+        id="applyFilters"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md focus:outline-none transition"
+      >
+        Apply Filters
+      </button>
+      <button
+        id="resetFilters"
+        class="ml-2 bg-gray-200 hover:bg-gray-300 text-gray-700 font-medium py-2 px-4 rounded-md focus:outline-none transition"
+      >
+        Reset
+      </button>
+    </div>
+  </div>
+
+  <!-- Export Options -->
+  <div class="mt-8 bg-white rounded-lg shadow-md p-6">
+    <h3 class="text-lg font-bold text-blue-900 mb-4">Export Options</h3>
+    <div>
+      <a
+        href="/admin/export-employees-excel"
+        class="bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded-md transition flex items-center inline-flex"
+      >
+        <svg
+          class="w-5 h-5 mr-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          ></path>
+        </svg>
+        Export to Excel
+      </a>
+    </div>
+  </div>
+  <% } %>
+
+  <!-- Upload CSV Modal -->
+  <div
+    id="uploadModal"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+  >
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="text-lg font-bold text-blue-900">
+          Upload Employee Data (CSV)
+        </h3>
+        <button
+          onclick="document.getElementById('uploadModal').classList.add('hidden')"
+          class="text-gray-500 hover:text-gray-700"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <form
+        action="/admin/upload-csv"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="mb-4">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="csvFile"
+          >
+            Select CSV File(s)
+          </label>
+          <input
+            type="file"
+            id="csvFile"
+            name="csvFile"
+            accept=".csv"
+            multiple
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            required
+          />
+          <p class="text-sm text-gray-500 mt-1">
+            You can select multiple CSV files to upload at once.
+          </p>
+        </div>
+
+        <div class="mb-4">
+          <label class="flex items-center">
+            <input
+              type="checkbox"
+              name="appendMode"
+              value="true"
+              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            />
+            <span class="ml-2 text-gray-700">Append to existing data</span>
+          </label>
+          <p class="text-sm text-gray-500 mt-1">
+            If checked, the new data will be added to the existing employee
+            list. Otherwise, it will replace all existing data.
+          </p>
+        </div>
+
+        <div class="border-t border-gray-200 pt-4">
+          <p class="text-sm text-gray-600 mb-2">
+            <strong>Expected CSV Format:</strong>
+          </p>
+          <p class="text-sm text-gray-500 mb-4">
+            first_name, last_name, employee_id, department, position, email,
+            phone, join_date
+          </p>
+        </div>
+
+        <div class="flex justify-end mt-4">
+          <button
+            type="button"
+            onclick="document.getElementById('uploadModal').classList.add('hidden')"
+            class="mr-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md"
+          >
+            Upload
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete All Employees Modal -->
+  <div
+    id="deleteAllModal"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+  >
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="text-lg font-bold text-red-600">Delete All Employees</h3>
+        <button
+          onclick="document.getElementById('deleteAllModal').classList.add('hidden')"
+          class="text-gray-500 hover:text-gray-700"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
+        <div class="flex items-center">
+          <div class="flex-shrink-0">
+            <svg
+              class="h-5 w-5 text-red-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+              ></path>
+            </svg>
+          </div>
+          <div class="ml-3">
+            <p class="text-sm text-red-700">
+              <strong>Warning:</strong> This action cannot be undone. All
+              employee data will be permanently deleted.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <form action="/admin/delete-all-employees" method="POST">
+        <div class="mb-4">
+          <label class="flex items-center">
+            <input
+              type="checkbox"
+              name="deleteRandomized"
+              value="true"
+              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            />
+            <span class="ml-2 text-gray-700"
+              >Also delete randomized employees data</span
+            >
+          </label>
+          <p class="text-sm text-gray-500 mt-1">
+            If checked, all randomized employee test records will also be
+            permanently deleted.
+          </p>
+        </div>
+
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2">
+            Type "DELETE" to confirm:
+          </label>
+          <input
+            type="text"
+            id="deleteConfirmation"
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent"
+            placeholder="DELETE"
+            oninput="document.getElementById('deleteAllButton').disabled = this.value !== 'DELETE'"
+          />
+        </div>
+
+        <div class="flex justify-end mt-4">
+          <button
+            type="button"
+            onclick="document.getElementById('deleteAllModal').classList.add('hidden')"
+            class="mr-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md"
+          >
+            Cancel
+          </button>
+          <button
+            id="deleteAllButton"
+            type="submit"
+            class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+            disabled
+          >
+            Delete All Data
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Delete Single Employee Modal -->
+  <div
+    id="deleteEmployeeModal"
+    class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden"
+  >
+    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-lg">
+      <div class="flex justify-between items-start mb-4">
+        <h3 class="text-lg font-bold text-red-600">Delete Employee</h3>
+        <button
+          onclick="document.getElementById('deleteEmployeeModal').classList.add('hidden')"
+          class="text-gray-500 hover:text-gray-700"
+        >
+          <svg
+            class="w-6 h-6"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            ></path>
+          </svg>
+        </button>
+      </div>
+
+      <p class="mb-4">
+        Are you sure you want to delete
+        <span id="employeeNameToDelete" class="font-bold"></span>?
+      </p>
+
+      <form id="deleteEmployeeForm" action="" method="POST">
+        <div class="flex justify-end mt-4">
+          <button
+            type="button"
+            onclick="document.getElementById('deleteEmployeeModal').classList.add('hidden')"
+            class="mr-2 bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md"
+          >
+            Cancel
+          </button>
+          <button
+            type="submit"
+            class="bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded-md"
+          >
+            Delete
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript for filtering and modals -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      // Table filtering logic
+      const table = document.querySelector("table");
+      if (table) {
+        const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+        // Populate department filter
+        const departmentFilter = document.getElementById("departmentFilter");
+        const departments = [
+          ...new Set(
+            rows
+              .map((row) => row.cells[2].textContent.trim())
+              .filter((dept) => dept !== "N/A")
+          ),
+        ];
+        departments.forEach((dept) => {
+          const option = document.createElement("option");
+          option.value = dept;
+          option.textContent = dept;
+          departmentFilter.appendChild(option);
+        });
+
+        // Populate position filter
+        const positionFilter = document.getElementById("positionFilter");
+        const positions = [
+          ...new Set(
+            rows
+              .map((row) => row.cells[3].textContent.trim())
+              .filter((pos) => pos !== "N/A")
+          ),
+        ];
+        positions.forEach((pos) => {
+          const option = document.createElement("option");
+          option.value = pos;
+          option.textContent = pos;
+          positionFilter.appendChild(option);
+        });
+
+        // Apply filters
+        document
+          .getElementById("applyFilters")
+          .addEventListener("click", function () {
+            const department = departmentFilter.value;
+            const position = positionFilter.value;
+            const joinDate = document.getElementById("joinDateFilter").value;
+            const searchTerm = document
+              .getElementById("searchInput")
+              .value.toLowerCase();
+
+            rows.forEach((row) => {
+              const deptMatch =
+                !department || row.cells[2].textContent.trim() === department;
+              const posMatch =
+                !position || row.cells[3].textContent.trim() === position;
+
+              // Date filtering logic would go here
+              const dateMatch = true; // Simplified for this example
+
+              const searchMatch =
+                !searchTerm ||
+                Array.from(row.cells).some((cell) =>
+                  cell.textContent.toLowerCase().includes(searchTerm)
+                );
+
+              row.style.display =
+                deptMatch && posMatch && dateMatch && searchMatch ? "" : "none";
+            });
+          });
+
+        // Reset filters
+        document
+          .getElementById("resetFilters")
+          .addEventListener("click", function () {
+            departmentFilter.value = "";
+            positionFilter.value = "";
+            document.getElementById("joinDateFilter").value = "";
+            document.getElementById("searchInput").value = "";
+
+            rows.forEach((row) => {
+              row.style.display = "";
+            });
+          });
+      }
+    });
+
+    // Delete employee modal functionality
+    function openDeleteEmployeeModal(employeeId, employeeName) {
+      document.getElementById("employeeNameToDelete").textContent =
+        employeeName;
+      document.getElementById(
+        "deleteEmployeeForm"
+      ).action = `/admin/delete-employee/${employeeId}`;
+      document.getElementById("deleteEmployeeModal").classList.remove("hidden");
+    }
+  </script>
+</div>

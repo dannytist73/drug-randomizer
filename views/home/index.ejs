@@ -1,0 +1,190 @@
+<!-- Hero Section -->
+<section class="relative">
+  <!-- Hero Background Image -->
+  <div class="absolute inset-0 bg-black opacity-60 z-10"></div>
+  <div
+    class="h-96 bg-cover bg-center"
+    style="
+      background-image: url('https://source.unsplash.com/random/1600x900/?drugs,awareness');
+    "
+  ></div>
+
+  <!-- Hero Content -->
+  <div
+    class="container mx-auto px-4 absolute inset-0 z-20 flex flex-col justify-center items-center text-center text-white"
+  >
+    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+      <%= heroHeading %>
+    </h1>
+    <p class="text-xl md:text-2xl mb-8"><%= heroSubheading %></p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a
+        href="/resources"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition shadow-lg"
+      >
+        Learn More
+      </a>
+      <a
+        href="/authorities"
+        class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition shadow-lg"
+      >
+        Get Help
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<section class="py-12">
+  <div class="container mx-auto px-4">
+    <!-- Introduction -->
+    <div class="max-w-3xl mx-auto text-center mb-12">
+      <h2 class="text-3xl font-bold mb-4 text-blue-900">
+        Building a Drug-Free Philippines
+      </h2>
+      <p class="text-lg text-gray-700 leading-relaxed">
+        Our mission is to promote awareness about the harmful effects of illegal
+        drugs and provide resources for those affected by substance abuse.
+        Through education, prevention, and intervention, we strive to create
+        safer workplaces and communities across the Philippines.
+      </p>
+    </div>
+
+    <!-- Features/Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+      <!-- Card 1 -->
+      <div
+        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+      >
+        <div
+          class="h-48 bg-cover bg-center"
+          style="
+            background-image: url('https://source.unsplash.com/random/600x400/?education,awareness');
+          "
+        ></div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2 text-blue-900">
+            Education & Awareness
+          </h3>
+          <p class="text-gray-700 mb-4">
+            Learn about the dangers of drug abuse and how it affects
+            individuals, families, and communities.
+          </p>
+          <a
+            href="/awareness"
+            class="inline-block text-blue-600 hover:text-blue-800 font-semibold"
+          >
+            Learn More &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div
+        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+      >
+        <div
+          class="h-48 bg-cover bg-center"
+          style="
+            background-image: url('https://source.unsplash.com/random/600x400/?help,support');
+          "
+        ></div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2 text-blue-900">
+            Support & Resources
+          </h3>
+          <p class="text-gray-700 mb-4">
+            Find resources and support for those affected by drug addiction,
+            including treatment options.
+          </p>
+          <a
+            href="/resources"
+            class="inline-block text-blue-600 hover:text-blue-800 font-semibold"
+          >
+            Explore Resources &rarr;
+          </a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div
+        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+      >
+        <div
+          class="h-48 bg-cover bg-center"
+          style="
+            background-image: url('https://source.unsplash.com/random/600x400/?police,emergency');
+          "
+        ></div>
+        <div class="p-6">
+          <h3 class="text-xl font-bold mb-2 text-blue-900">
+            Emergency Contacts
+          </h3>
+          <p class="text-gray-700 mb-4">
+            Connect with authorities and emergency services to report
+            drug-related incidents or seek help.
+          </p>
+          <a
+            href="/authorities"
+            class="inline-block text-blue-600 hover:text-blue-800 font-semibold"
+          >
+            Contact Authorities &rarr;
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="bg-blue-900 text-white rounded-lg shadow-lg p-8">
+      <h2 class="text-2xl font-bold mb-6 text-center">
+        Drug Abuse in the Philippines: By the Numbers
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+        <div>
+          <div class="text-4xl font-bold mb-2">1.8M</div>
+          <p class="text-blue-200">Estimated drug users</p>
+        </div>
+        <div>
+          <div class="text-4xl font-bold mb-2">77%</div>
+          <p class="text-blue-200">Of barangays affected</p>
+        </div>
+        <div>
+          <div class="text-4xl font-bold mb-2">₱120B</div>
+          <p class="text-blue-200">Annual economic cost</p>
+        </div>
+        <div>
+          <div class="text-4xl font-bold mb-2">12,000+</div>
+          <p class="text-blue-200">Rehabilitation centers</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action -->
+<section class="py-12 bg-gray-100">
+  <div class="container mx-auto px-4 text-center">
+    <h2 class="text-3xl font-bold mb-4 text-blue-900">
+      Join the Fight Against Illegal Drugs
+    </h2>
+    <p class="text-lg text-gray-700 max-w-2xl mx-auto mb-8">
+      Together, we can create a drug-free Philippines. Learn how to recognize
+      drug abuse, support those affected, and report incidents to proper
+      authorities.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a
+        href="/awareness"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition shadow-lg"
+      >
+        Get Educated
+      </a>
+      <a
+        href="/authorities"
+        class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition shadow-lg"
+      >
+        Report an Incident
+      </a>
+    </div>
+  </div>
+</section>

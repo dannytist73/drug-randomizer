@@ -1,0 +1,488 @@
+<% const post = { 
+  title: "The Science Behind Addiction", 
+  category: "Education", 
+  date: "February 18, 2025", 
+  author: { 
+    name: "Dr. Maria Reyes", 
+    role: "Neuroscientist" 
+  }
+}; %>
+
+<div class="container mx-auto px-4 py-8">
+  <!-- Breadcrumbs -->
+  <div class="text-sm breadcrumbs mb-6">
+    <ul class="flex items-center text-gray-500">
+      <li class="flex items-center">
+        <a href="/" class="hover:text-blue-600">Home</a>
+        <svg
+          class="w-4 h-4 mx-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          ></path>
+        </svg>
+      </li>
+      <li class="flex items-center">
+        <a href="/resources" class="hover:text-blue-600">Resources</a>
+        <svg
+          class="w-4 h-4 mx-2"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M9 5l7 7-7 7"
+          ></path>
+        </svg>
+      </li>
+      <li><%= post.title %></li>
+    </ul>
+  </div>
+
+  <div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <!-- Featured Image -->
+    <div
+      class="h-64 md:h-80 bg-cover bg-center"
+      style="
+        background-image: url('https://plus.unsplash.com/premium_photo-1674491520278-f13635c36f93?q=80&w=1632&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+      "
+    ></div>
+
+    <!-- Article Content -->
+    <div class="p-6 md:p-10">
+      <div class="mb-8">
+        <span
+          class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
+        >
+          <%= post.category %>
+        </span>
+        <h1 class="text-3xl md:text-4xl font-bold text-blue-900 mt-4 mb-2">
+          <%= post.title %>
+        </h1>
+        <div class="flex items-center text-gray-500 text-sm mt-2">
+          <span><%= post.date %></span>
+          <span class="mx-3">•</span>
+          <span>By <%= post.author.name %>, <%= post.author.role %></span>
+        </div>
+      </div>
+
+      <div class="prose prose-lg max-w-none text-gray-800">
+        <!-- Introduction Section -->
+        <h2
+          class="text-3xl font-bold text-gray-900 mb-6 border-b-2 border-blue-500 pb-2"
+        >
+          Understanding Addiction as a Brain Disease
+        </h2>
+        <p class="mb-6 leading-relaxed">
+          Addiction is a complex brain disorder that affects millions of people worldwide. 
+          Despite common misconceptions that addiction results solely from poor choices or 
+          moral failings, scientific evidence clearly shows that addiction is a chronic 
+          brain disease that changes both brain structure and function. These changes can 
+          be long-lasting and can lead to the harmful behaviors seen in people who 
+          struggle with substance use disorders.
+        </p>
+        <p class="mb-8 leading-relaxed">
+          This article explores the neuroscience of addiction, helping to dispel myths and 
+          foster understanding of how substances affect the brain, why some people are 
+          more vulnerable to addiction than others, and the implications for treatment and 
+          recovery.
+        </p>
+
+        <!-- How Addiction Works Section -->
+        <h2
+          class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-blue-500 pb-2"
+        >
+          How Addiction Works in the Brain
+        </h2>
+        <p class="mb-6 leading-relaxed">
+          At its core, addiction involves the brain's reward system, a complex network of neural 
+          circuits that evolved to motivate behaviors necessary for survival, such as eating 
+          and reproducing. This system operates primarily through a neurotransmitter called 
+          dopamine, which creates feelings of pleasure and reinforces behaviors.
+        </p>
+        <p class="mb-4 font-medium text-gray-700">The cycle of addiction typically involves three stages:</p>
+        <ul class="list-disc list-inside mb-8 space-y-2">
+          <li class="leading-relaxed">
+            <strong class="font-semibold text-blue-600">Binge/Intoxication Stage</strong>
+            - The individual takes an increasing amount of the substance, experiencing its rewarding or pleasurable effects
+          </li>
+          <li class="leading-relaxed">
+            <strong class="font-semibold text-blue-600">Withdrawal/Negative Affect Stage</strong>
+            - When the substance wears off, the individual experiences negative emotions and physical symptoms
+          </li>
+          <li class="leading-relaxed">
+            <strong class="font-semibold text-blue-600">Preoccupation/Anticipation Stage</strong>
+            - The individual becomes preoccupied with obtaining and using the substance again
+          </li>
+        </ul>
+
+        <!-- The Dopamine Connection -->
+        <h3 class="text-xl font-semibold text-gray-900 mb-3">
+          The Dopamine Connection
+        </h3>
+        <p class="mb-4 leading-relaxed">
+          Drugs of abuse cause a surge in dopamine that is much larger than what's triggered by natural 
+          rewards. This flood of dopamine signals to the brain that something extremely important has happened 
+          and should be remembered. The brain then begins to associate the drug with this strong reward 
+          signal, driving continued use despite negative consequences.
+        </p>
+        <p class="mb-8 leading-relaxed">
+          Over time, repeated exposure to the substance leads to tolerance—the individual needs more 
+          of the substance to achieve the same effect. This occurs because the brain adapts to the consistently 
+          high levels of dopamine by producing less of it or reducing the number of dopamine receptors.
+        </p>
+
+        <!-- Expert Insight Section -->
+        <div class="bg-blue-50 p-6 my-6 rounded-lg shadow-sm">
+          <h3 class="text-lg font-bold text-blue-800 mb-2">Expert Insight</h3>
+          <p class="italic text-gray-700 leading-relaxed">
+            "Addiction is not a failure of willpower or character but a chronic brain disorder 
+            that requires understanding, treatment, and support. The more we understand the 
+            neural mechanisms, the more we can develop effective treatments and reduce the 
+            stigma associated with addiction."
+          </p>
+          <p class="text-right font-medium text-blue-800 mt-2">
+            - Dr. Nora Volkow, Director of the National Institute on Drug Abuse
+          </p>
+        </div>
+
+        <!-- Why Some People Become Addicted Section -->
+        <h2
+          class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-blue-500 pb-2"
+        >
+          Why Some People Become Addicted and Others Don't
+        </h2>
+        <p class="mb-6 leading-relaxed">
+          Addiction vulnerability varies significantly between individuals. The risk factors that contribute 
+          to addiction can be grouped into three main categories:
+        </p>
+
+        <h3 class="text-xl font-semibold text-gray-900 mb-3">
+          1. Genetic Factors
+        </h3>
+        <p class="mb-4 leading-relaxed">
+          Genetic factors account for approximately 40-60% of a person's vulnerability to addiction. 
+          These genetic factors can influence:
+        </p>
+        <ul class="list-disc list-inside mb-8 space-y-2">
+          <li class="leading-relaxed">How a person's body metabolizes substances</li>
+          <li class="leading-relaxed">The intensity of pleasure or reward a person experiences from substances</li>
+          <li class="leading-relaxed">Impulsivity and risk-taking tendencies</li>
+          <li class="leading-relaxed">Vulnerability to mental health disorders that often co-occur with addiction</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-gray-900 mb-3">
+          2. Environmental Factors
+        </h3>
+        <p class="mb-4 leading-relaxed">
+          A person's environment also plays a crucial role in addiction vulnerability:
+        </p>
+        <ul class="list-disc list-inside mb-8 space-y-2">
+          <li class="leading-relaxed">Exposure to trauma, especially during childhood</li>
+          <li class="leading-relaxed">High levels of stress</li>
+          <li class="leading-relaxed">Peer pressure and social influences</li>
+          <li class="leading-relaxed">Availability and access to substances</li>
+          <li class="leading-relaxed">Family attitudes toward substance use</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-gray-900 mb-3">
+          3. Developmental Factors
+        </h3>
+        <p class="mb-4 leading-relaxed">
+          The age at which a person begins using substances significantly impacts addiction risk:
+        </p>
+        <ul class="list-disc list-inside mb-8 space-y-2">
+          <li class="leading-relaxed">
+            The adolescent brain is particularly vulnerable as it's still developing, especially the 
+            prefrontal cortex responsible for decision-making and impulse control
+          </li>
+          <li class="leading-relaxed">
+            Early substance use can disrupt normal brain development and increase the likelihood of 
+            developing an addiction later in life
+          </li>
+        </ul>
+
+        <!-- Important Note Section -->
+        <div
+          class="my-8 border-l-4 border-yellow-500 pl-6 py-2 bg-yellow-50 rounded-lg shadow-sm"
+        >
+          <h3 class="text-lg font-bold text-yellow-800 mb-2">Important Note</h3>
+          <p class="text-gray-700 leading-relaxed">
+            Having risk factors for addiction doesn't guarantee that a person will develop an 
+            addiction, just as the absence of risk factors doesn't ensure immunity. Addiction 
+            results from complex interactions between genes, environment, and individual development.
+          </p>
+        </div>
+
+        <!-- Implications for Treatment Section -->
+        <h2
+          class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-blue-500 pb-2"
+        >
+          Implications for Treatment and Recovery
+        </h2>
+        <p class="mb-6 leading-relaxed">
+          Understanding addiction as a brain disease has profound implications for treatment approaches. 
+          Effective addiction treatment typically involves:
+        </p>
+
+        <h3 class="text-xl font-semibold text-gray-900 mb-3">
+          Evidence-Based Approaches
+        </h3>
+        <ul class="list-disc list-inside mb-8 space-y-2">
+          <li class="leading-relaxed">
+            <strong class="font-semibold text-blue-600">Behavioral therapies</strong> - 
+            Cognitive-behavioral therapy (CBT), motivational enhancement therapy, and 
+            contingency management help address the psychological aspects of addiction
+          </li>
+          <li class="leading-relaxed">
+            <strong class="font-semibold text-blue-600">Medications</strong> - 
+            FDA-approved medications can help manage withdrawal symptoms, reduce cravings, 
+            and treat co-occurring mental health disorders
+          </li>
+          <li class="leading-relaxed">
+            <strong class="font-semibold text-blue-600">Comprehensive approach</strong> - 
+            The most effective treatment addresses medical, psychological, social, vocational, 
+            and legal problems in addition to substance use
+          </li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-gray-900 mb-3">
+          Long-Term Recovery Perspective
+        </h3>
+        <p class="mb-4 leading-relaxed">
+          Like other chronic diseases such as diabetes or hypertension, addiction often requires 
+          long-term management:
+        </p>
+        <ul class="list-disc list-inside mb-8 space-y-2">
+          <li class="leading-relaxed">
+            Recovery is often a lifelong process with potential relapses that should be 
+            viewed as opportunities for treatment adjustment, not as failures
+          </li>
+          <li class="leading-relaxed">
+            Support systems, including family involvement and peer support groups, 
+            play a crucial role in long-term recovery
+          </li>
+          <li class="leading-relaxed">
+            Addressing co-occurring mental health disorders is essential for successful 
+            addiction treatment
+          </li>
+        </ul>
+
+        <!-- Conclusion Section -->
+        <h2
+          class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-blue-500 pb-2"
+        >
+          Conclusion
+        </h2>
+        <p class="mb-6 leading-relaxed">
+          Understanding addiction as a brain disease rather than a moral failing is crucial for 
+          developing effective prevention and treatment strategies. The neuroscience of addiction 
+          helps explain why willpower alone is often insufficient for overcoming substance use 
+          disorders and why professional treatment is typically necessary.
+        </p>
+        <p class="mb-8 leading-relaxed">
+          By recognizing the complex interplay of genetic, environmental, and developmental factors 
+          that contribute to addiction, we can approach this disorder with compassion, reduce stigma, 
+          and provide evidence-based treatments that address the underlying brain changes associated 
+          with addiction. This scientific understanding provides hope for those struggling with addiction 
+          and their loved ones, highlighting that recovery is possible with proper support and treatment.
+        </p>
+      </div>
+
+      <!-- Tags -->
+      <div class="mt-10 pt-6 border-t border-gray-200">
+        <div class="flex flex-wrap gap-2">
+          <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+            >Neuroscience</span
+          >
+          <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+            >Brain Disease</span
+          >
+          <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+            >Dopamine</span
+          >
+          <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+            >Treatment</span
+          >
+          <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+            >Recovery</span
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Related Articles -->
+  <div class="mt-12">
+    <h2 class="text-2xl font-bold text-blue-900 mb-6">Related Articles</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div
+        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+      >
+        <div
+          class="h-48 bg-cover bg-center"
+          style="
+            background-image: url('https://source.unsplash.com/random/300x200/?warning,signs');
+          "
+        ></div>
+        <div class="p-6">
+          <span
+            class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium"
+            >Prevention</span
+          >
+          <h3 class="text-lg font-bold mb-2 mt-2 text-blue-900">
+            Early Signs of Drug Dependency
+          </h3>
+          <p class="text-gray-700 mb-4 line-clamp-2">
+            Recognizing the early warning signs of drug dependency can make a
+            significant difference in timely intervention.
+          </p>
+          <a
+            href="/resources/early-signs-of-drug-dependency"
+            class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+          >
+            Read More
+            <svg
+              class="w-4 h-4 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+      >
+        <div
+          class="h-48 bg-cover bg-center"
+          style="
+            background-image: url('https://source.unsplash.com/random/300x200/?family,support');
+          "
+        ></div>
+        <div class="p-6">
+          <span
+            class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium"
+            >Recovery</span
+          >
+          <h3 class="text-lg font-bold mb-2 mt-2 text-blue-900">
+            Supporting a Loved One Through Recovery
+          </h3>
+          <p class="text-gray-700 mb-4 line-clamp-2">
+            Family support plays a crucial role in successful recovery. Learn practical ways to provide effective support.
+          </p>
+          <a
+            href="/resources/supporting-loved-ones-recovery"
+            class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+          >
+            Read More
+            <svg
+              class="w-4 h-4 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+      >
+        <div
+          class="h-48 bg-cover bg-center"
+          style="
+            background-image: url('https://source.unsplash.com/random/300x200/?treatment,therapy');
+          "
+        ></div>
+        <div class="p-6">
+          <span
+            class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium"
+            >Treatment</span
+          >
+          <h3 class="text-lg font-bold mb-2 mt-2 text-blue-900">
+            Treatment Options in Baguio City
+          </h3>
+          <p class="text-gray-700 mb-4 line-clamp-2">
+            A comprehensive guide to addiction treatment and rehabilitation resources available in Baguio City.
+          </p>
+          <a
+            href="/resources/treatment-options"
+            class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+          >
+            Read More
+            <svg
+              class="w-4 h-4 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Call to Action -->
+  <div class="mt-12 bg-blue-50 rounded-lg p-8 text-center">
+    <h2 class="text-2xl font-bold text-blue-900 mb-4">
+      Need More Information?
+    </h2>
+    <p class="text-gray-700 max-w-2xl mx-auto mb-6">
+      We're here to help. If you have questions or need more resources about
+      drug prevention, treatment, or support services, contact us or explore our
+      comprehensive resource library.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a
+        href="/resources"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition inline-block"
+      >
+        Browse Resources
+      </a>
+      <a
+        href="/authorities"
+        class="bg-white text-blue-900 hover:bg-blue-100 font-bold py-3 px-6 rounded-lg transition inline-block border border-blue-200"
+      >
+        Contact Support
+      </a>
+    </div>
+  </div>
+</div>

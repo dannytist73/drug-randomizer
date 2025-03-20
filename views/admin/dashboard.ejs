@@ -1,0 +1,340 @@
+<div class="max-w-7xl mx-auto">
+  <!-- Page Header -->
+  <div class="mb-8">
+    <h1 class="text-3xl font-bold text-blue-900 mb-2">Admin Dashboard</h1>
+    <p class="text-gray-600">Manage employee drug testing randomization</p>
+  </div>
+
+  <% if (message) { %>
+  <div
+    class="<%= message.type === 'error' ? 'bg-red-100 border-red-500 text-red-700' : 'bg-green-100 border-green-500 text-green-700' %> border-l-4 p-4 mb-6 alert-dismissible"
+    role="alert"
+  >
+    <div class="flex items-center">
+      <div class="py-1">
+        <svg
+          class="w-6 h-6 mr-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="<%= message.type === 'error' ? 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z' : 'M5 13l4 4L19 7' %>"
+          ></path>
+        </svg>
+      </div>
+      <div>
+        <p><%= message.text %></p>
+      </div>
+      <button type="button" class="ml-auto close-alert" aria-label="Close">
+        <span class="text-2xl" aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
+  <% } %>
+
+  <!-- Statistics Cards -->
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+    <!-- Total Employees -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="flex items-center">
+        <div class="p-3 rounded-full bg-blue-100 text-blue-800">
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+            ></path>
+          </svg>
+        </div>
+        <div class="ml-4">
+          <p class="text-gray-500 text-sm">Total Employees</p>
+          <p class="text-2xl font-semibold text-gray-800">
+            <%= stats.totalEmployees %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Randomized This Year -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="flex items-center">
+        <div class="p-3 rounded-full bg-green-100 text-green-800">
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            ></path>
+          </svg>
+        </div>
+        <div class="ml-4">
+          <p class="text-gray-500 text-sm">Randomized This Year</p>
+          <p class="text-2xl font-semibold text-gray-800">
+            <%= stats.randomizedThisYear %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Eligible for Randomization -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="flex items-center">
+        <div class="p-3 rounded-full bg-yellow-100 text-yellow-800">
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 6v6m0 0v6m0-6h6m-6 0H6"
+            ></path>
+          </svg>
+        </div>
+        <div class="ml-4">
+          <p class="text-gray-500 text-sm">Eligible for Randomization</p>
+          <p class="text-2xl font-semibold text-gray-800">
+            <%= stats.eligibleEmployees %>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Last Data Update -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <div class="flex items-center">
+        <div class="p-3 rounded-full bg-purple-100 text-purple-800">
+          <svg
+            class="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            ></path>
+          </svg>
+        </div>
+        <div class="ml-4">
+          <p class="text-gray-500 text-sm">Last Data Update</p>
+          <p class="text-xl font-semibold text-gray-800">
+            <%= stats.lastUploadDate %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Sections -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <!-- CSV Upload Section -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-bold text-blue-900 mb-4">Upload Employee Data</h2>
+      <p class="text-gray-600 mb-4">
+        Upload CSV files containing employee information. Select one or multiple
+        files at once.
+      </p>
+
+      <form
+        action="/admin/upload-csv"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="mb-4">
+          <label
+            class="block text-gray-700 text-sm font-bold mb-2"
+            for="csvFile"
+          >
+            CSV File(s)
+          </label>
+          <input
+            type="file"
+            id="csvFile"
+            name="csvFile"
+            accept=".csv"
+            multiple
+            class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+            required
+          />
+          <p class="text-sm text-gray-500 mt-1">
+            You can select multiple CSV files to upload at once.
+          </p>
+        </div>
+
+        <div class="mb-4">
+          <label class="flex items-center">
+            <input
+              type="checkbox"
+              name="appendMode"
+              value="true"
+              class="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+            />
+            <span class="ml-2 text-gray-700">Append to existing data</span>
+          </label>
+          <p class="text-sm text-gray-500 mt-1">
+            If checked, the new data will be added to the existing employee
+            list. Otherwise, it will replace all existing data.
+          </p>
+        </div>
+
+        <p class="text-sm text-gray-500 mb-4">
+          <strong>Expected Format:</strong> first_name, last_name, employee_id,
+          department, position, email, phone, join_date
+        </p>
+
+        <button
+          type="submit"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition"
+        >
+          Upload CSV
+        </button>
+      </form>
+    </div>
+
+    <!-- Quick Actions Section -->
+    <div class="bg-white rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-bold text-blue-900 mb-4">Quick Actions</h2>
+
+      <div class="space-y-4">
+        <a
+          href="/admin/employees"
+          class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
+        >
+          <div class="p-2 rounded-full bg-blue-100 text-blue-800 mr-4">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold">View All Employees</h3>
+            <p class="text-sm text-gray-600">
+              View and manage employee records
+            </p>
+          </div>
+        </a>
+
+        <a
+          href="/admin/randomize"
+          class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
+        >
+          <div class="p-2 rounded-full bg-green-100 text-green-800 mr-4">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold">Randomize Employees</h3>
+            <p class="text-sm text-gray-600">
+              Generate a random selection of employees for drug testing
+            </p>
+          </div>
+        </a>
+
+        <a
+          href="/admin/randomized-employees"
+          class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
+        >
+          <div class="p-2 rounded-full bg-purple-100 text-purple-800 mr-4">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold">View Randomized Results</h3>
+            <p class="text-sm text-gray-600">
+              View and export employees selected for drug testing
+            </p>
+          </div>
+        </a>
+
+        <a
+          href="/admin/export-excel"
+          class="flex items-center p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
+        >
+          <div class="p-2 rounded-full bg-yellow-100 text-yellow-800 mr-4">
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              ></path>
+            </svg>
+          </div>
+          <div>
+            <h3 class="font-semibold">Export to Excel</h3>
+            <p class="text-sm text-gray-600">
+              Export randomized employee data to Excel format
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,82 @@
+[
+  {
+    "employeeId": "16",
+    "name": "GHEL JENNIFER ALUNES",
+    "department": "",
+    "position": "NURSE II",
+    "randomizedDate": "2025-03-18T20:31:29.673Z",
+    "year": 2025
+  },
+  {
+    "employeeId": "19",
+    "name": "ZARINA MAYE BARRERAS",
+    "department": "",
+    "position": "NURSE I",
+    "randomizedDate": "2025-03-18T20:31:29.673Z",
+    "year": 2025
+  },
+  {
+    "employeeId": "4",
+    "name": "SHIRLEEN MAE BENGWAYAN",
+    "department": "",
+    "position": "NURSE II",
+    "randomizedDate": "2025-03-18T20:31:29.673Z",
+    "year": 2025
+  },
+  {
+    "employeeId": "5",
+    "name": "JERCELYN COLLADO",
+    "department": "",
+    "position": "SOCIAL WELFARE OFFICER I",
+    "randomizedDate": "2025-03-18T20:31:29.673Z",
+    "year": 2025
+  },
+  {
+    "employeeId": "12",
+    "name": "PEARL LIPAWEN",
+    "department": "",
+    "position": "NURSE II",
+    "randomizedDate": "2025-03-18T20:31:29.673Z",
+    "year": 2025
+  },
+  {
+    "employeeId": "8",
+    "name": "CHARUTH DALKOGEN",
+    "department": "",
+    "position": "SOCIAL WELFARE OFFICER I",
+    "randomizedDate": "2025-03-18T20:31:29.673Z",
+    "year": 2025
+  },
+  {
+    "employeeId": "9",
+    "name": "IRIES DAYAGON",
+    "department": "",
+    "position": "SOCIAL WELFARE OFFICER I",
+    "randomizedDate": "2025-03-18T20:31:29.673Z",
+    "year": 2025
+  },
+  {
+    "employeeId": "10",
+    "name": "JOSEPHINE GALANO",
+    "department": "",
+    "position": "LAUNDRY WORKER II",
+    "randomizedDate": "2025-03-18T20:31:29.673Z",
+    "year": 2025
+  },
+  {
+    "employeeId": "11",
+    "name": "CHRISTIAN DAVE GARCIA",
+    "department": "",
+    "position": "ADMINISTRATIVE ASSISTANT II (CLERK IV)",
+    "randomizedDate": "2025-03-18T20:31:29.673Z",
+    "year": 2025
+  },
+  {
+    "employeeId": "18",
+    "name": "JOANNA PEARLSTINE BALANGAY",
+    "department": "",
+    "position": "NURSE I",
+    "randomizedDate": "2025-03-18T20:31:29.673Z",
+    "year": 2025
+  }
+]

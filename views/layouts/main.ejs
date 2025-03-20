@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %> - Drug Test Randomizer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Styles -->
+    <style>
+      /* Custom styles can be added here */
+    </style>
+  </head>
+  <body class="flex flex-col min-h-screen bg-gray-50">
+    <!-- Header -->
+    <%- include('../partials/header') %>
+
+    <!-- Navbar -->
+    <%- include('../partials/navbar') %>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-6"><%- body %></main>
+
+    <!-- Footer -->
+    <%- include('../partials/footer') %>
+
+    <!-- Script for message dismissal -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const alerts = document.querySelectorAll(".alert-dismissible");
+        alerts.forEach((alert) => {
+          const closeBtn = alert.querySelector(".close-alert");
+          if (closeBtn) {
+            closeBtn.addEventListener("click", function () {
+              alert.style.display = "none";
+            });
+
+            // Auto dismiss after 5 seconds
+            setTimeout(() => {
+              alert.style.display = "none";
+            }, 5000);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,211 @@
+[
+  {
+    "id": "1",
+    "firstName": "RACHAEL",
+    "lastName": "AGETYENG",
+    "employeeId": "1",
+    "department": "",
+    "position": "SOCIAL WELFARE OFFICER I",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "2",
+    "firstName": "RIENELLY",
+    "lastName": "BAGTO",
+    "employeeId": "2",
+    "department": "",
+    "position": "NURSE II",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "3",
+    "firstName": "JEEVEL CHRISTINE",
+    "lastName": "BELENO",
+    "employeeId": "3",
+    "department": "",
+    "position": "PHARMACIST II",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "4",
+    "firstName": "SHIRLEEN MAE",
+    "lastName": "BENGWAYAN",
+    "employeeId": "4",
+    "department": "",
+    "position": "NURSE II",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "5",
+    "firstName": "JERCELYN",
+    "lastName": "COLLADO",
+    "employeeId": "5",
+    "department": "",
+    "position": "SOCIAL WELFARE OFFICER I",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "6",
+    "firstName": "LAURIE ANN",
+    "lastName": "CULALLAD",
+    "employeeId": "6",
+    "department": "",
+    "position": "NURSE II",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "7",
+    "firstName": "JULIE",
+    "lastName": "DACWAG",
+    "employeeId": "7",
+    "department": "",
+    "position": "NURSE II",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "8",
+    "firstName": "CHARUTH",
+    "lastName": "DALKOGEN",
+    "employeeId": "8",
+    "department": "",
+    "position": "SOCIAL WELFARE OFFICER I",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "9",
+    "firstName": "IRIES",
+    "lastName": "DAYAGON",
+    "employeeId": "9",
+    "department": "",
+    "position": "SOCIAL WELFARE OFFICER I",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "10",
+    "firstName": "JOSEPHINE",
+    "lastName": "GALANO",
+    "employeeId": "10",
+    "department": "",
+    "position": "LAUNDRY WORKER II",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "11",
+    "firstName": "CHRISTIAN DAVE",
+    "lastName": "GARCIA",
+    "employeeId": "11",
+    "department": "",
+    "position": "ADMINISTRATIVE ASSISTANT II (CLERK IV)",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "12",
+    "firstName": "PEARL",
+    "lastName": "LIPAWEN",
+    "employeeId": "12",
+    "department": "",
+    "position": "NURSE II",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "13",
+    "firstName": "FILBURTH",
+    "lastName": "MACARIO",
+    "employeeId": "13",
+    "department": "",
+    "position": "SOCIAL WELFARE OFFICER I",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "14",
+    "firstName": "CHARMINE JOY",
+    "lastName": "SALES",
+    "employeeId": "14",
+    "department": "",
+    "position": "ADMINISTRATIVE OFFICER II (INFORMATION OFFICER I)",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "15",
+    "firstName": "KARINA",
+    "lastName": "ABUL",
+    "employeeId": "15",
+    "department": "",
+    "position": "NURSE I",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "16",
+    "firstName": "GHEL JENNIFER",
+    "lastName": "ALUNES",
+    "employeeId": "16",
+    "department": "",
+    "position": "NURSE II",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "17",
+    "firstName": "JAN VISHNU",
+    "lastName": "ANCHETA",
+    "employeeId": "17",
+    "department": "",
+    "position": "NURSE I",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "18",
+    "firstName": "JOANNA PEARLSTINE",
+    "lastName": "BALANGAY",
+    "employeeId": "18",
+    "department": "",
+    "position": "NURSE I",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  },
+  {
+    "id": "19",
+    "firstName": "ZARINA MAYE",
+    "lastName": "BARRERAS",
+    "employeeId": "19",
+    "department": "",
+    "position": "NURSE I",
+    "email": "",
+    "phone": "",
+    "joinDate": ""
+  }
+]

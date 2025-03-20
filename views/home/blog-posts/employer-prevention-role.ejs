@@ -1,0 +1,617 @@
+<% const post = { 
+    title: "The Role of Employers in Preventing Workplace Substance Abuse", 
+    category: "Workplace", 
+    date: "January 15, 2025", 
+    author: { 
+      name: "Katrina Mendoza", 
+      role: "Occupational Health Specialist" 
+    }
+  }; %>
+  
+  <div class="container mx-auto px-4 py-8">
+    <!-- Breadcrumbs -->
+    <div class="text-sm breadcrumbs mb-6">
+      <ul class="flex items-center text-gray-500">
+        <li class="flex items-center">
+          <a href="/" class="hover:text-blue-600">Home</a>
+          <svg
+            class="w-4 h-4 mx-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            ></path>
+          </svg>
+        </li>
+        <li class="flex items-center">
+          <a href="/resources" class="hover:text-blue-600">Resources</a>
+          <svg
+            class="w-4 h-4 mx-2"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"
+            ></path>
+          </svg>
+        </li>
+        <li><%= post.title %></li>
+      </ul>
+    </div>
+  
+    <div class="bg-white rounded-lg shadow-md overflow-hidden">
+      <!-- Featured Image -->
+      <div
+        class="h-64 md:h-80 bg-cover bg-center"
+        style="
+          background-image: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3');
+        "
+      ></div>
+  
+      <!-- Article Content -->
+      <div class="p-6 md:p-10">
+        <div class="mb-8">
+          <span
+            class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium"
+          >
+            <%= post.category %>
+          </span>
+          <h1 class="text-3xl md:text-4xl font-bold text-blue-900 mt-4 mb-2">
+            <%= post.title %>
+          </h1>
+          <div class="flex items-center text-gray-500 text-sm mt-2">
+            <span><%= post.date %></span>
+            <span class="mx-3">•</span>
+            <span>By <%= post.author.name %>, <%= post.author.role %></span>
+          </div>
+        </div>
+  
+        <div class="prose prose-lg max-w-none text-gray-800">
+          <!-- Introduction Section -->
+          <h2
+            class="text-3xl font-bold text-gray-900 mb-6 border-b-2 border-blue-500 pb-2"
+          >
+            Beyond Testing: Creating Supportive Work Environments
+          </h2>
+          <p class="mb-6 leading-relaxed">
+            Workplace substance abuse is a significant concern affecting employee health, safety, productivity, 
+            and the overall work environment. While drug testing programs are an important component of 
+            addressing substance abuse in the workplace, employers have a much broader role to play in 
+            prevention. Creating a comprehensive approach that focuses on education, supportive policies, 
+            and a healthy workplace culture can significantly reduce substance abuse issues while promoting 
+            employee wellbeing.
+          </p>
+          <p class="mb-8 leading-relaxed">
+            This article explores how employers can develop proactive strategies beyond testing to prevent 
+            workplace substance abuse, support affected employees, and foster a healthier, more productive 
+            work environment.
+          </p>
+  
+          <!-- The Business Impact Section -->
+          <h2
+            class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-blue-500 pb-2"
+          >
+            The Business Impact of Workplace Substance Abuse
+          </h2>
+          <p class="mb-6 leading-relaxed">
+            Before diving into prevention strategies, it's important to understand the extensive impact 
+            substance abuse can have on the workplace:
+          </p>
+          
+          <ul class="list-disc list-inside mb-8 space-y-2">
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Decreased productivity</strong> - 
+              Employees struggling with substance use issues are more likely to be late, absent, 
+              or unable to perform at their full capacity
+            </li>
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Workplace accidents and injuries</strong> - 
+              Substance use significantly increases the risk of accidents, especially in safety-sensitive positions
+            </li>
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Increased healthcare costs</strong> - 
+              Substance abuse is associated with higher medical expenses and insurance claims
+            </li>
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Negative workplace culture</strong> - 
+              Unaddressed substance issues can damage team dynamics, trust, and morale
+            </li>
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Legal and liability issues</strong> - 
+              Employers may face legal consequences if substance abuse leads to workplace incidents
+            </li>
+          </ul>
+  
+          <!-- Statistics Box -->
+          <div class="bg-blue-50 p-6 my-6 rounded-lg shadow-sm">
+            <h3 class="text-lg font-bold text-blue-800 mb-2">By the Numbers</h3>
+            <ul class="list-disc list-inside space-y-2">
+              <li class="leading-relaxed">
+                Employees with substance use issues are 2-5 times more likely to be involved in workplace accidents
+              </li>
+              <li class="leading-relaxed">
+                Substance-abusing employees are absent 16 days per year on average, compared to 5 days for other employees
+              </li>
+              <li class="leading-relaxed">
+                Up to 40% of industrial workplace fatalities are linked to substance use
+              </li>
+              <li class="leading-relaxed">
+                For every ₱1 invested in employee wellness programs, companies see a return of ₱3-₱5 through improved productivity and reduced healthcare costs
+              </li>
+            </ul>
+          </div>
+  
+          <!-- Comprehensive Prevention Strategies Section -->
+          <h2
+            class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-blue-500 pb-2"
+          >
+            Comprehensive Prevention Strategies
+          </h2>
+          <p class="mb-6 leading-relaxed">
+            Effective workplace substance abuse prevention goes beyond simply implementing a drug testing program. 
+            A comprehensive approach includes:
+          </p>
+  
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">
+            1. Clear, Supportive Policies
+          </h3>
+          <p class="mb-4 leading-relaxed">
+            Develop and communicate substance abuse policies that balance deterrence with support:
+          </p>
+          <ul class="list-disc list-inside mb-8 space-y-2">
+            <li class="leading-relaxed">
+              Define prohibited behaviors and substances clearly
+            </li>
+            <li class="leading-relaxed">
+              Outline the consequences of policy violations
+            </li>
+            <li class="leading-relaxed">
+              Emphasize that the company's primary concern is employee wellbeing
+            </li>
+            <li class="leading-relaxed">
+              Detail the support resources available to employees
+            </li>
+            <li class="leading-relaxed">
+              Include procedures that respect privacy and dignity
+            </li>
+          </ul>
+  
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">
+            2. Education and Awareness Programs
+          </h3>
+          <p class="mb-4 leading-relaxed">
+            Knowledge is a powerful prevention tool. Provide education on:
+          </p>
+          <ul class="list-disc list-inside mb-8 space-y-2">
+            <li class="leading-relaxed">
+              The health and safety risks associated with substance abuse
+            </li>
+            <li class="leading-relaxed">
+              How to recognize signs of substance abuse in oneself and others
+            </li>
+            <li class="leading-relaxed">
+              The impact of substance use on work performance and safety
+            </li>
+            <li class="leading-relaxed">
+              Available resources for seeking help
+            </li>
+            <li class="leading-relaxed">
+              Dispelling myths and reducing stigma around addiction and treatment
+            </li>
+          </ul>
+  
+          <!-- Important Note Section -->
+          <div
+            class="my-8 border-l-4 border-yellow-500 pl-6 py-2 bg-yellow-50 rounded-lg shadow-sm"
+          >
+            <h3 class="text-lg font-bold text-yellow-800 mb-2">Important Note</h3>
+            <p class="text-gray-700 leading-relaxed">
+              Educational programs are most effective when they're ongoing rather than one-time events. 
+              Consider incorporating substance abuse awareness into regular safety meetings, new employee 
+              orientation, and periodic refresher trainings.
+            </p>
+          </div>
+  
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">
+            3. Employee Assistance Programs (EAPs)
+          </h3>
+          <p class="mb-4 leading-relaxed">
+            EAPs are one of the most valuable tools employers can offer:
+          </p>
+          <ul class="list-disc list-inside mb-8 space-y-2">
+            <li class="leading-relaxed">
+              Provide confidential assessment, counseling, and referral services
+            </li>
+            <li class="leading-relaxed">
+              Address not only substance abuse but also underlying issues like stress, mental health concerns, 
+              and work-life balance
+            </li>
+            <li class="leading-relaxed">
+              Regularly promote EAP services to reduce stigma and encourage utilization
+            </li>
+            <li class="leading-relaxed">
+              Ensure confidentiality to build trust in the program
+            </li>
+          </ul>
+  
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">
+            4. Supportive Work Environment
+          </h3>
+          <p class="mb-4 leading-relaxed">
+            The workplace culture itself can either contribute to or help prevent substance abuse:
+          </p>
+          <ul class="list-disc list-inside mb-8 space-y-2">
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Address workplace stressors</strong> - 
+              High stress is a risk factor for substance abuse
+            </li>
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Promote work-life balance</strong> - 
+              Excessive work demands can lead to unhealthy coping mechanisms
+            </li>
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Provide mental health resources</strong> - 
+              Mental health and substance use issues often co-occur
+            </li>
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Develop a positive social climate</strong> - 
+              Strong workplace relationships provide natural support systems
+            </li>
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Examine workplace norms around alcohol</strong> - 
+              Evaluate whether company events and culture normalize excessive drinking
+            </li>
+          </ul>
+  
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">
+            5. Supervisor Training
+          </h3>
+          <p class="mb-4 leading-relaxed">
+            Frontline supervisors play a critical role in prevention and early intervention:
+          </p>
+          <ul class="list-disc list-inside mb-8 space-y-2">
+            <li class="leading-relaxed">
+              Train supervisors to recognize potential signs of substance abuse
+            </li>
+            <li class="leading-relaxed">
+              Provide clear guidelines on how to address performance issues that may be 
+              related to substance use
+            </li>
+            <li class="leading-relaxed">
+              Teach appropriate intervention techniques that focus on job performance 
+              rather than making personal diagnoses
+            </li>
+            <li class="leading-relaxed">
+              Ensure supervisors understand available resources for referring employees
+            </li>
+          </ul>
+  
+          <!-- Case Study Section -->
+          <div class="bg-blue-50 p-6 my-6 rounded-lg shadow-sm">
+            <h3 class="text-lg font-bold text-blue-800 mb-2">Case Study: Success Story</h3>
+            <p class="text-gray-700 leading-relaxed mb-3">
+              A manufacturing company in Baguio City implemented a comprehensive prevention program 
+              that included clear policies, quarterly awareness sessions, supervisor training, and 
+              an enhanced EAP. Within 18 months, they experienced:
+            </p>
+            <ul class="list-disc list-inside space-y-1 text-gray-700">
+              <li>35% reduction in workplace accidents</li>
+              <li>22% decrease in absenteeism</li>
+              <li>18% fewer health insurance claims</li>
+              <li>38% increase in EAP utilization</li>
+              <li>Positive feedback from employees on workplace culture improvements</li>
+            </ul>
+            <p class="text-gray-700 leading-relaxed mt-3">
+              The company found that their approach not only addressed substance abuse but improved overall 
+              employee wellbeing and productivity.
+            </p>
+          </div>
+  
+          <!-- Supporting Employees in Recovery Section -->
+          <h2
+            class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-blue-500 pb-2"
+          >
+            Supporting Employees in Recovery
+          </h2>
+          <p class="mb-6 leading-relaxed">
+            Prevention efforts should be complemented by support for employees seeking help or 
+            returning to work after treatment:
+          </p>
+  
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">
+            Return-to-Work Considerations
+          </h3>
+          <ul class="list-disc list-inside mb-8 space-y-2">
+            <li class="leading-relaxed">
+              Develop clear return-to-work policies and agreements
+            </li>
+            <li class="leading-relaxed">
+              Consider temporary modified duties when appropriate
+            </li>
+            <li class="leading-relaxed">
+              Implement follow-up monitoring in a supportive, non-punitive manner
+            </li>
+            <li class="leading-relaxed">
+              Provide education for team members to foster a supportive environment
+            </li>
+            <li class="leading-relaxed">
+              Recognize that recovery is an ongoing process that may include setbacks
+            </li>
+          </ul>
+  
+          <h3 class="text-xl font-semibold text-gray-900 mb-3">
+            Legal Considerations
+          </h3>
+          <p class="mb-4 leading-relaxed">
+            Employers should be aware of legal considerations when supporting employees in recovery:
+          </p>
+          <ul class="list-disc list-inside mb-8 space-y-2">
+            <li class="leading-relaxed">
+              Understanding the provisions in Republic Act No. 9165 related to rehabilitation and treatment
+            </li>
+            <li class="leading-relaxed">
+              Balancing confidentiality with safety requirements
+            </li>
+            <li class="leading-relaxed">
+              Recognizing addiction as a medical condition that may qualify for certain accommodations
+            </li>
+            <li class="leading-relaxed">
+              Consulting with legal counsel to ensure policies comply with labor laws
+            </li>
+          </ul>
+  
+          <!-- Implementing an Effective Program Section -->
+          <h2
+            class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-blue-500 pb-2"
+          >
+            Implementing an Effective Program
+          </h2>
+          <p class="mb-6 leading-relaxed">
+            For companies looking to develop or enhance their prevention efforts, consider these 
+            implementation steps:
+          </p>
+  
+          <ol class="list-decimal list-inside mb-8 space-y-3">
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Assess current needs and existing resources</strong> - 
+              Understand the specific substance abuse risks in your industry and workplace
+            </li>
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Develop a written policy with stakeholder input</strong> - 
+              Include HR, legal, safety personnel, and employee representatives
+            </li>
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Communicate the policy clearly</strong> - 
+              Ensure all employees understand both the rules and the resources available
+            </li>
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Train supervisors and managers</strong> - 
+              Provide skills needed to recognize issues and respond appropriately
+            </li>
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Establish or enhance EAP services</strong> - 
+              Ensure these services are accessible and confidential
+            </li>
+            <li class="leading-relaxed">
+              <strong class="font-semibold text-blue-600">Monitor, evaluate, and adjust</strong> - 
+              Regularly review program effectiveness and make improvements
+            </li>
+          </ol>
+  
+          <!-- Conclusion Section -->
+          <h2
+            class="text-2xl font-bold text-gray-900 mb-4 border-b-2 border-blue-500 pb-2"
+          >
+            Conclusion
+          </h2>
+          <p class="mb-6 leading-relaxed">
+            Employers have a unique opportunity to play a pivotal role in preventing workplace substance 
+            abuse and supporting employee wellness. While drug testing is one important component, truly 
+            effective prevention requires a comprehensive approach that addresses workplace culture, 
+            provides education and support resources, and balances accountability with compassion.
+          </p>
+          <p class="mb-8 leading-relaxed">
+            By implementing these strategies, employers not only reduce the risks and costs associated 
+            with workplace substance abuse but also create healthier, more supportive work environments 
+            where all employees can thrive. The investment in prevention and support programs typically 
+            yields significant returns in terms of improved productivity, reduced accidents and absenteeism, 
+            and a more positive workplace culture.
+          </p>
+        </div>
+  
+        <!-- Tags -->
+        <div class="mt-10 pt-6 border-t border-gray-200">
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+              >Workplace Wellness</span
+            >
+            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+              >Prevention</span
+            >
+            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+              >Employee Support</span
+            >
+            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+              >EAP</span
+            >
+            <span class="px-3 py-1 bg-gray-100 text-gray-800 rounded-full text-sm"
+              >Workplace Policy</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Related Articles -->
+    <div class="mt-12">
+      <h2 class="text-2xl font-bold text-blue-900 mb-6">Related Articles</h2>
+  
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div
+          class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+        >
+          <div
+            class="h-48 bg-cover bg-center"
+            style="
+              background-image: url('https://source.unsplash.com/random/300x200/?workplace,office');
+            "
+          ></div>
+          <div class="p-6">
+            <span
+              class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium"
+              >Workplace</span
+            >
+            <h3 class="text-lg font-bold mb-2 mt-2 text-blue-900">
+              Creating an Effective Workplace Drug Testing Program
+            </h3>
+            <p class="text-gray-700 mb-4 line-clamp-2">
+              Learn best practices for implementing a fair, consistent, and effective drug testing program in your workplace.
+            </p>
+            <a
+              href="/resources/workplace-testing-program"
+              class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+            >
+              Read More
+              <svg
+                class="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+  
+        <div
+          class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+        >
+          <div
+            class="h-48 bg-cover bg-center"
+            style="
+              background-image: url('https://source.unsplash.com/random/300x200/?legal,law');
+            "
+          ></div>
+          <div class="p-6">
+            <span
+              class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium"
+              >Policy</span
+            >
+            <h3 class="text-lg font-bold mb-2 mt-2 text-blue-900">
+              Current Drug Policy in the Philippines
+            </h3>
+            <p class="text-gray-700 mb-4 line-clamp-2">
+              Understanding the legal framework around drug use, possession, and rehabilitation in the Philippines.
+            </p>
+            <a
+              href="/resources/philippines-drug-policy"
+              class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+            >
+              Read More
+              <svg
+                class="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+  
+        <div
+          class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition"
+        >
+          <div
+            class="h-48 bg-cover bg-center"
+            style="
+              background-image: url('https://source.unsplash.com/random/300x200/?family,support');
+            "
+          ></div>
+          <div class="p-6">
+            <span
+              class="px-2 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium"
+              >Recovery</span
+            >
+            <h3 class="text-lg font-bold mb-2 mt-2 text-blue-900">
+              Supporting a Loved One Through Recovery
+            </h3>
+            <p class="text-gray-700 mb-4 line-clamp-2">
+              Family support plays a crucial role in successful recovery. Learn practical ways to provide effective support.
+            </p>
+            <a
+              href="/resources/supporting-loved-ones-recovery"
+              class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center"
+            >
+              Read More
+              <svg
+                class="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M14 5l7 7m0 0l-7 7m7-7H3"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Call to Action -->
+    <div class="mt-12 bg-blue-50 rounded-lg p-8 text-center">
+      <h2 class="text-2xl font-bold text-blue-900 mb-4">
+        Need More Information?
+      </h2>
+      <p class="text-gray-700 max-w-2xl mx-auto mb-6">
+        We're here to help. If you have questions or need more resources about
+        implementing workplace substance abuse prevention programs, contact us or explore our
+        comprehensive resource library.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href="/resources"
+          class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition inline-block"
+        >
+          Browse Resources
+        </a>
+        <a
+          href="/authorities"
+          class="bg-white text-blue-900 hover:bg-blue-100 font-bold py-3 px-6 rounded-lg transition inline-block border border-blue-200"
+        >
+          Contact Support
+        </a>
+      </div>
+    </div>
+  </div>
